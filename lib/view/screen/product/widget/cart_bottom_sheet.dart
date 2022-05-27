@@ -400,7 +400,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                           child: Center(
                                             child: FittedBox(
                                               child: Text(
-                                                  '${getTranslated(widget.label[i], context)}${i == 0 ? '' : ' = ${widget.product.largeUnitQuantity}'}',
+                                                  '${getTranslated(widget.label[i], context)}${i == 0 ? '' : ' = ${widget.product.quantityFromPc}'}',
 
                                                   // widget
                                                   //     .product
