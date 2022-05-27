@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class BrandModel {
   int _id;
   String _name;
@@ -33,13 +35,13 @@ class BrandModel {
   int get brandProductsCount => _brandProductsCount;
 
   BrandModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _name = json['name'];
-    _image = json['image'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _brandProductsCount = json['brand_products_count'];
+    _id = Parser.parseInt(json['id']);
+    _name = Parser.parseString(json['name']);
+    _image = Parser.parseString(json['image']);
+    _status = Parser.parseInt(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _brandProductsCount = Parser.parseInt(json['brand_products_count']);
   }
 
   Map<String, dynamic> toJson() {

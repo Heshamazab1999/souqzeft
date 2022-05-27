@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class ReviewBody {
   String _productId;
   String _comment;
@@ -21,9 +23,9 @@ class ReviewBody {
   List<String> get fileUpload => _fileUpload;
 
   ReviewBody.fromJson(Map<String, dynamic> json) {
-    _productId = json['product_id'];
-    _comment = json['comment'];
-    _rating = json['rating'];
+    _productId = Parser.parseString(json['product_id']);
+    _comment = Parser.parseString(json['comment']);
+    _rating = Parser.parseString(json['rating']);
     _fileUpload = json['fileUpload'].cast<String>();
   }
 

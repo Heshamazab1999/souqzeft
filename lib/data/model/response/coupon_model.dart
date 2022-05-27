@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class CouponModel {
   int _id;
   String _couponType;
@@ -57,19 +59,19 @@ class CouponModel {
   String get updatedAt => _updatedAt;
 
   CouponModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _couponType = json['coupon_type'];
-    _title = json['title'];
-    _code = json['code'];
-    _startDate = json['start_date'];
-    _expireDate = json['expire_date'];
+    _id = Parser.parseInt(json['id']);
+    _couponType = Parser.parseString(json['coupon_type']);
+    _title = Parser.parseString(json['title']);
+    _code = Parser.parseString(json['code']);
+    _startDate = Parser.parseString(json['start_date']);
+    _expireDate = Parser.parseString(json['expire_date']);
     _minPurchase = json['min_purchase'].toDouble();
     _maxDiscount = json['max_discount'].toDouble();
     _discount = json['discount'].toDouble();
-    _discountType = json['discount_type'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _discountType = Parser.parseString(json['discount_type']);
+    _status = Parser.parseInt(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {

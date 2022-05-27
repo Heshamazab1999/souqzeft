@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class UpdateUserInfoModel {
   String fName;
   String lName;
@@ -10,9 +12,9 @@ class UpdateUserInfoModel {
   });
 
   UpdateUserInfoModel.fromJson(Map<String, dynamic> json) {
-    fName = json['f_name'];
-    lName = json['l_name'];
-    phone = json['phone'];
+    fName = Parser.parseString(json['f_name']);
+    lName = Parser.parseString(json['l_name']);
+    phone = Parser.parseString(json['phone']);
   }
 
   Map<String, dynamic> toJson() {

@@ -1,5 +1,7 @@
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
 
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class OrderDetailsModel {
   int _id;
   int _orderId;
@@ -77,24 +79,24 @@ class OrderDetailsModel {
   int get refundReq => _refundReq;
 
   OrderDetailsModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _orderId = json['order_id'];
-    _productId = json['product_id'];
-    _sellerId = json['seller_id'];
+    _id = Parser.parseInt(json['id']);
+    _orderId = Parser.parseInt(json['order_id']);
+    _productId = Parser.parseInt(json['product_id']);
+    _sellerId = Parser.parseInt(json['seller_id']);
     if(json['product_details'] != null) {
       _productDetails = Product.fromJson(json['product_details']);
     }
-    _qty = json['qty'];
+    _qty = Parser.parseInt(json['qty']);
     _price = json['price'].toDouble();
     _tax = json['tax'].toDouble();
     _discount = json['discount'].toDouble();
-    _deliveryStatus = json['delivery_status'];
-    _paymentStatus = json['payment_status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _shippingMethodId = json['shipping_method_id'];
-    _variant = json['variant'];
-    _refundReq = json['refund_request'];
+    _deliveryStatus = Parser.parseString(json['delivery_status']);
+    _paymentStatus = Parser.parseString(json['payment_status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _shippingMethodId = Parser.parseInt(json['shipping_method_id']);
+    _variant = Parser.parseString(json['variant']);
+    _refundReq = Parser.parseInt(json['refund_request']);
     /*if (json['variation'] != null) {
       _variation = [];
       json['variation'].forEach((v) {

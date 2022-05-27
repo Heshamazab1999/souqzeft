@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class ChosenShippingMethodModel {
   int _id;
   String _cartGroupId;
@@ -29,12 +31,12 @@ class ChosenShippingMethodModel {
   String get updatedAt => _updatedAt;
 
   ChosenShippingMethodModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _cartGroupId = json['cart_group_id'];
+    _id = Parser.parseInt(json['id']);
+    _cartGroupId = Parser.parseString(json['cart_group_id']);
     _shippingMethodId = int.parse(json['shipping_method_id'].toString());
     _shippingCost = double.parse(json['shipping_cost'].toString());
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {

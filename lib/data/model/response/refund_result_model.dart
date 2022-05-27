@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class RefundResultModel {
   double productPrice;
   int quntity;
@@ -20,7 +22,7 @@ class RefundResultModel {
 
   RefundResultModel.fromJson(Map<String, dynamic> json) {
     productPrice = json['product_price'].toDouble();
-    quntity = json['quntity'];
+    quntity = Parser.parseInt(json['quntity']);
     productTotalDiscount = json['product_total_discount'].toDouble();
     productTotalTax = json['product_total_tax'].toDouble();
     subtotal = json['subtotal'].toDouble();
@@ -86,24 +88,24 @@ class RefundRequest {
         this.changeBy});
 
   RefundRequest.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    orderDetailsId = json['order_details_id'];
-    customerId = json['customer_id'];
-    status = json['status'];
+    id = Parser.parseInt(json['id']);
+    orderDetailsId = Parser.parseInt(json['order_details_id']);
+    customerId = Parser.parseInt(json['customer_id']);
+    status = Parser.parseString(json['status']);
     amount = json['amount'].toDouble();
-    productId = json['product_id'];
-    orderId = json['order_id'];
-    refundReason = json['refund_reason'];
+    productId = Parser.parseInt(json['product_id']);
+    orderId = Parser.parseInt(json['order_id']);
+    refundReason = Parser.parseString(json['refund_reason']);
     if(json['images'] != null){
       images = json['images'].cast<String>();
     }
 
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    approvedNote = json['approved_note'];
-    rejectedNote = json['rejected_note'];
-    paymentInfo = json['payment_info'];
-    changeBy = json['change_by'];
+    createdAt = Parser.parseString(json['created_at']);
+    updatedAt = Parser.parseString(json['updated_at']);
+    approvedNote = Parser.parseString(json['approved_note']);
+    rejectedNote = Parser.parseString(json['rejected_note']);
+    paymentInfo = Parser.parseString(json['payment_info']);
+    changeBy = Parser.parseString(json['change_by']);
   }
 
   Map<String, dynamic> toJson() {

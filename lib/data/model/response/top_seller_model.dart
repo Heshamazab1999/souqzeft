@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class TopSellerModel {
   int _id;
   int _sellerId;
@@ -41,15 +43,15 @@ class TopSellerModel {
   String get banner => _banner;
 
   TopSellerModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _sellerId = json['seller_id'];
-    _name = json['name'];
-    _address = json['address'];
-    _contact = json['contact'];
-    _image = json['image'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _banner = json['banner'];
+    _id = Parser.parseInt(json['id']);
+    _sellerId = Parser.parseInt(json['seller_id']);
+    _name = Parser.parseString(json['name']);
+    _address = Parser.parseString(json['address']);
+    _contact = Parser.parseString(json['contact']);
+    _image = Parser.parseString(json['image']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _banner = Parser.parseString(json['banner']);
   }
 
   Map<String, dynamic> toJson() {

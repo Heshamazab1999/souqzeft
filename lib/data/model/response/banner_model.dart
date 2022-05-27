@@ -1,4 +1,7 @@
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
 
 class BannerModel {
   int id;
@@ -26,15 +29,15 @@ class BannerModel {
       });
 
   BannerModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    photo = json['photo'];
-    bannerType = json['banner_type'];
-    published = json['published'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    url = json['url'];
-    resourceType = json['resource_type'];
-    resourceId = json['resource_id'];
+    id = Parser.parseInt(json['id']);
+    photo = Parser.parseString(json['photo']);
+    bannerType = Parser.parseString(json['banner_type']);
+    published = Parser.parseInt(json['published']);
+    createdAt = Parser.parseString(json['created_at']);
+    updatedAt = Parser.parseString(json['updated_at']);
+    url = Parser.parseString(json['url']);
+    resourceType = Parser.parseString(json['resource_type']);
+    resourceId = Parser.parseInt(json['resource_id']);
     product = json['product'] != null && json['banner_type']=='product'? new Product.fromJson(json['product']) : null;
   }
 

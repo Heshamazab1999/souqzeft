@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class ResponseModel {
   String _message;
   bool _isSuccess;

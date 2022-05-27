@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class ReviewModel {
   int _id;
   int _productId;
@@ -45,15 +47,15 @@ class ReviewModel {
   Customer get customer => _customer;
 
   ReviewModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _productId = json['product_id'];
-    _customerId = json['customer_id'];
-    _comment = json['comment'];
+    _id = Parser.parseInt(json['id']);
+    _productId = Parser.parseInt(json['product_id']);
+    _customerId = Parser.parseInt(json['customer_id']);
+    _comment = Parser.parseString(json['comment']);
     _attachment = json['attachment'].cast<String>();
-    _rating = json['rating'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _rating = Parser.parseInt(json['rating']);
+    _status = Parser.parseInt(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
     _customer = json['customer'] != null
         ? new Customer.fromJson(json['customer'])
         : null;
@@ -150,22 +152,22 @@ class Customer {
   String get apartmentNo => _apartmentNo;
 
   Customer.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _name = json['name'];
-    _fName = json['f_name'];
-    _lName = json['l_name'];
-    _phone = json['phone'];
-    _image = json['image'];
-    _email = json['email'];
-    _emailVerifiedAt = json['email_verified_at'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _streetAddress = json['street_address'];
-    _country = json['country'];
-    _city = json['city'];
-    _zip = json['zip'];
-    _houseNo = json['house_no'];
-    _apartmentNo = json['apartment_no'];
+    _id = Parser.parseInt(json['id']);
+    _name = Parser.parseString(json['name']);
+    _fName = Parser.parseString(json['f_name']);
+    _lName = Parser.parseString(json['l_name']);
+    _phone = Parser.parseString(json['phone']);
+    _image = Parser.parseString(json['image']);
+    _email = Parser.parseString(json['email']);
+    _emailVerifiedAt = Parser.parseString(json['email_verified_at']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _streetAddress = Parser.parseString(json['street_address']);
+    _country = Parser.parseString(json['country']);
+    _city = Parser.parseString(json['city']);
+    _zip = Parser.parseString(json['zip']);
+    _houseNo = Parser.parseString(json['house_no']);
+    _apartmentNo = Parser.parseString(json['apartment_no']);
   }
 
   Map<String, dynamic> toJson() {

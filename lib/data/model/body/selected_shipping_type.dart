@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class SelectedShippingType {
   int _sellerId;
   String _selectedShippingType;
@@ -15,8 +17,8 @@ class SelectedShippingType {
   String get selectedShippingType => _selectedShippingType;
 
   SelectedShippingType.fromJson(Map<String, dynamic> json) {
-    _sellerId = json['sellerId'];
-    _selectedShippingType = json['selectedShippingType'];
+    _sellerId = Parser.parseInt(json['sellerId']);
+    _selectedShippingType = Parser.parseString(json['selectedShippingType']);
   }
 
   Map<String, dynamic> toJson() {

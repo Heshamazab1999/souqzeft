@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class OnboardingModel {
   String _imageUrl;
   String _title;

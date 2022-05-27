@@ -1,6 +1,8 @@
 import 'package:flutter_sixvalley_ecommerce/data/model/response/cart_model.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
 
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class OrderPlaceModel {
   CustomerInfo _customerInfo;
   List<CartModel> _cart;
@@ -33,8 +35,8 @@ class OrderPlaceModel {
         _cart.add(new CartModel.fromJson(v));
       });
     }
-    _paymentMethod = json['payment_method'];
-    _discount = json['discount'];
+    _paymentMethod = Parser.parseString(json['payment_method']);
+    _discount = Parser.parseDouble(json['discount']);
   }
 
   Map<String, dynamic> toJson() {
@@ -73,11 +75,11 @@ class CustomerInfo {
   String get orderNote => _orderNote;
 
   CustomerInfo.fromJson(Map<String, dynamic> json) {
-    _addressId = json['address_id'];
-    _shippingAddress = json['shipping_address'];
-    _billingId = json['billing_address_id'];
-    _billingAddress = json['billing_address_data'];
-    _orderNote = json['order_note'];
+    _addressId = Parser.parseString(json['address_id']);
+    _shippingAddress = Parser.parseString(json['shipping_address']);
+    _billingId = Parser.parseString(json['billing_address_id']);
+    _billingAddress = Parser.parseString(json['billing_address_data']);
+    _orderNote = Parser.parseString(json['order_note']);
 
   }
 
@@ -139,21 +141,21 @@ class Cart {
   double get shippingCost => _shippingCost;
 
   Cart.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _tax = json['tax'];
-    _quantity = json['quantity'];
-    _price = json['price'];
-    _discount = json['discount'];
-    _discountType = json['discount_type'];
-    _shippingMethodId = json['shipping_method_id'];
-    _variant = json['variant'];
+    _id = Parser.parseString(json['id']);
+    _tax = Parser.parseDouble(json['tax']);
+    _quantity = Parser.parseInt(json['quantity']);
+    _price = Parser.parseDouble(json['price']);
+    _discount = Parser.parseDouble(json['discount']);
+    _discountType = Parser.parseString(json['discount_type']);
+    _shippingMethodId = Parser.parseInt(json['shipping_method_id']);
+    _variant = Parser.parseString(json['variant']);
     if (json['variations'] != null) {
       _variation = [];
       json['variations'].forEach((v) {
         _variation.add(new Variation.fromJson(v));
       });
     }
-    _shippingCost = json['shipping_cost'];
+    _shippingCost = Parser.parseDouble(json['shipping_cost']);
   }
 
   Map<String, dynamic> toJson() {

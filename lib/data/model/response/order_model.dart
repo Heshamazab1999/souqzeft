@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class OrderModel {
   int _id;
   int _customerId;
@@ -124,43 +126,43 @@ class OrderModel {
   DeliveryMan get deliveryMan => _deliveryMan;
 
   OrderModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _customerId = json['customer_id'];
-    _customerType = json['customer_type'];
-    _paymentStatus = json['payment_status'];
-    _orderStatus = json['order_status'];
-    _paymentMethod = json['payment_method'];
-    _transactionRef = json['transaction_ref'];
+    _id = Parser.parseInt(json['id']);
+    _customerId = Parser.parseInt(json['customer_id']);
+    _customerType = Parser.parseString(json['customer_type']);
+    _paymentStatus = Parser.parseString(json['payment_status']);
+    _orderStatus = Parser.parseString(json['order_status']);
+    _paymentMethod = Parser.parseString(json['payment_method']);
+    _transactionRef = Parser.parseString(json['transaction_ref']);
     _orderAmount = json['order_amount'].toDouble();
-    _shippingAddress = json['shipping_address'];
+    _shippingAddress = Parser.parseInt(json['shipping_address']);
     _shippingAddressData = json['shipping_address_data'] != null
         ? new ShippingAddressData.fromJson(json['shipping_address_data'])
         : null;
-    _billingAddress = json['billing_address'];
+    _billingAddress = Parser.parseInt(json['billing_address']);
     _billingAddressData = json['billing_address_data'] != null
         ? new BillingAddressData.fromJson(json['billing_address_data'])
         : null;
 
     if(json['seller_id'] !=null && json['seller_id'] != ''){
-      _sellerId = json['seller_id'];
+      _sellerId = Parser.parseInt(json['seller_id']);
     }
     _shippingMethodId = int.parse(json['shipping_method_id'].toString());
     _shippingCost = double.parse(json['shipping_cost'].toString());
     if(json['created_at'] != null){
-      _createdAt = json['created_at'];
+      _createdAt = Parser.parseString(json['created_at']);
     }
-    _updatedAt = json['updated_at'];
+    _updatedAt = Parser.parseString(json['updated_at']);
     _discountAmount = json['discount_amount'].toDouble();
-    _discountType = json['discount_type'];
-    _orderNote = json['order_note'];
-    _orderType = json['order_type'];
+    _discountType = Parser.parseString(json['discount_type']);
+    _orderNote = Parser.parseString(json['order_note']);
+    _orderType = Parser.parseString(json['order_type']);
     _extraDiscount = json['extra_discount'].toDouble();
-    _extraDiscountType = json['extra_discount_type'];
+    _extraDiscountType = Parser.parseString(json['extra_discount_type']);
     if(json['delivery_service_name']!=null && json['delivery_service_name']!= ""){
-      _thirdPartyServiceName = json['delivery_service_name'];
+      _thirdPartyServiceName = Parser.parseString(json['delivery_service_name']);
     }
     if(json['third_party_delivery_tracking_id']!=null && json['third_party_delivery_tracking_id']!= ""){
-      _thirdPartyTrackingId = json['third_party_delivery_tracking_id'];
+      _thirdPartyTrackingId = Parser.parseString(json['third_party_delivery_tracking_id']);
     }
     _deliveryMan = json['delivery_man'] != null
         ? new DeliveryMan.fromJson(json['delivery_man'])
@@ -238,20 +240,20 @@ class BillingAddressData {
         this.isBilling});
 
   BillingAddressData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    customerId = json['customer_id'];
-    contactPersonName = json['contact_person_name'];
-    addressType = json['address_type'];
-    address = json['address'];
-    city = json['city'];
-    zip = json['zip'];
-    phone = json['phone'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    country = json['country'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    isBilling = json['is_billing'];
+    id = Parser.parseInt(json['id']);
+    customerId = Parser.parseInt(json['customer_id']);
+    contactPersonName = Parser.parseString(json['contact_person_name']);
+    addressType = Parser.parseString(json['address_type']);
+    address = Parser.parseString(json['address']);
+    city = Parser.parseString(json['city']);
+    zip = Parser.parseString(json['zip']);
+    phone = Parser.parseString(json['phone']);
+    createdAt = Parser.parseString(json['created_at']);
+    updatedAt = Parser.parseString(json['updated_at']);
+    country = Parser.parseString(json['country']);
+    latitude = Parser.parseString(json['latitude']);
+    longitude = Parser.parseString(json['longitude']);
+    isBilling = Parser.parseInt(json['is_billing']);
   }
 
   Map<String, dynamic> toJson() {
@@ -350,17 +352,17 @@ class ShippingAddressData {
 
 
   ShippingAddressData.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _customerId = json['customer_id'];
-    _contactPersonName = json['contact_person_name'];
-    _addressType = json['address_type'];
-    _address = json['address'];
-    _city = json['city'];
-    _zip = json['zip'];
-    _phone = json['phone'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _country = json['country'];
+    _id = Parser.parseInt(json['id']);
+    _customerId = Parser.parseInt(json['customer_id']);
+    _contactPersonName = Parser.parseString(json['contact_person_name']);
+    _addressType = Parser.parseString(json['address_type']);
+    _address = Parser.parseString(json['address']);
+    _city = Parser.parseString(json['city']);
+    _zip = Parser.parseString(json['zip']);
+    _phone = Parser.parseString(json['phone']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _country = Parser.parseString(json['country']);
   }
 
   Map<String, dynamic> toJson() {
@@ -424,11 +426,11 @@ class DeliveryMan {
 
   DeliveryMan.fromJson(Map<String, dynamic> json) {
 
-    _fName = json['f_name'];
-    _lName = json['l_name'];
-    _phone = json['phone'];
-    _email = json['email'];
-    _image = json['image'];
+    _fName = Parser.parseString(json['f_name']);
+    _lName = Parser.parseString(json['l_name']);
+    _phone = Parser.parseString(json['phone']);
+    _email = Parser.parseString(json['email']);
+    _image = Parser.parseString(json['image']);
 
   }
 

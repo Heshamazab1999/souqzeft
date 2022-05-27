@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class ConfigModel {
   int _systemDefaultCurrency;
   bool _digitalPayment;
@@ -118,32 +120,32 @@ class ConfigModel {
   int get billingAddress => _billingAddress;
 
   ConfigModel.fromJson(Map<String, dynamic> json) {
-    _systemDefaultCurrency = json['system_default_currency'];
-    _digitalPayment = json['digital_payment'];
-    _cod = json['cash_on_delivery'];
+    _systemDefaultCurrency = Parser.parseInt(json['system_default_currency']);
+    _digitalPayment = Parser.parseBool(json['digital_payment']);
+    _cod = Parser.parseBool(json['cash_on_delivery']);
     _baseUrls = json['base_urls'] != null
         ? new BaseUrls.fromJson(json['base_urls'])
         : null;
     _staticUrls = json['static_urls'] != null
         ? new StaticUrls.fromJson(json['static_urls'])
         : null;
-    _aboutUs = json['about_us'];
-    _privacyPolicy = json['privacy_policy'];
+    _aboutUs = Parser.parseString(json['about_us']);
+    _privacyPolicy = Parser.parseString(json['privacy_policy']);
     if (json['faq'] != null) {
       _faq = [];
       json['faq'].forEach((v) {
         _faq.add(new Faq.fromJson(v));
       });
     }
-    _termsConditions = json['terms_&_conditions'];
+    _termsConditions = Parser.parseString(json['terms_&_conditions']);
     if (json['currency_list'] != null) {
       _currencyList = [];
       json['currency_list'].forEach((v) {
         _currencyList.add(new CurrencyList.fromJson(v));
       });
     }
-    _currencySymbolPosition = json['currency_symbol_position'];
-    _maintenanceMode = json['maintenance_mode'];
+    _currencySymbolPosition = Parser.parseString(json['currency_symbol_position']);
+    _maintenanceMode = Parser.parseBool(json['maintenance_mode']);
     _language = json['language'].cast<String>();
     if (json['colors'] != null) {
       _colors = [];
@@ -153,27 +155,27 @@ class ConfigModel {
     }
 
     _unit = json['unit'].cast<String>();
-    _shippingMethod = json['shipping_method'];
-    _currencyModel = json['currency_model'];
-    _emailVerification = json['email_verification'];
-    _phoneVerification = json['phone_verification'];
-    _countryCode = json['country_code'];
+    _shippingMethod = Parser.parseString(json['shipping_method']);
+    _currencyModel = Parser.parseString(json['currency_model']);
+    _emailVerification = Parser.parseBool(json['email_verification']);
+    _phoneVerification = Parser.parseBool(json['phone_verification']);
+    _countryCode = Parser.parseString(json['country_code']);
     if (json['social_login'] != null) {
       _socialLogin = [];
       json['social_login'].forEach((v) {
         _socialLogin.add(new SocialLogin.fromJson(v));
       });
     }
-    _forgetPasswordVerification = json['forgot_password_verification'];
+    _forgetPasswordVerification = Parser.parseString(json['forgot_password_verification']);
     _announcement = json['announcement'] != null
         ? new Announcement.fromJson(json['announcement'])
         : null;
 
     if (json['software_version'] != null) {
-      _version = json['software_version'];
+      _version = Parser.parseString(json['software_version']);
     }
     if (json['business_mode'] != null) {
-      _businessMode = json['business_mode'];
+      _businessMode = Parser.parseString(json['business_mode']);
     }
     if (json['decimal_point_settings'] != null) {
       _decimalPointSetting =
@@ -187,7 +189,7 @@ class ConfigModel {
     }
     if (json['billing_input_by_customer'] != null) {
       try {
-        _billingAddress = json['billing_input_by_customer'];
+        _billingAddress = Parser.parseInt(json['billing_input_by_customer']);
       } catch (e) {
         _billingAddress =
             int.parse(json['billing_input_by_customer'].toString());
@@ -300,16 +302,16 @@ class BaseUrls {
   String get notificationImageUrl => _notificationImageUrl;
 
   BaseUrls.fromJson(Map<String, dynamic> json) {
-    _productImageUrl = json['product_image_url'];
-    _productThumbnailUrl = json['product_thumbnail_url'];
-    _brandImageUrl = json['brand_image_url'];
-    _customerImageUrl = json['customer_image_url'];
-    _bannerImageUrl = json['banner_image_url'];
-    _categoryImageUrl = json['category_image_url'];
-    _reviewImageUrl = json['review_image_url'];
-    _sellerImageUrl = json['seller_image_url'];
-    _shopImageUrl = json['shop_image_url'];
-    _notificationImageUrl = json['notification_image_url'];
+    _productImageUrl = Parser.parseString(json['product_image_url']);
+    _productThumbnailUrl = Parser.parseString(json['product_thumbnail_url']);
+    _brandImageUrl = Parser.parseString(json['brand_image_url']);
+    _customerImageUrl = Parser.parseString(json['customer_image_url']);
+    _bannerImageUrl = Parser.parseString(json['banner_image_url']);
+    _categoryImageUrl = Parser.parseString(json['category_image_url']);
+    _reviewImageUrl = Parser.parseString(json['review_image_url']);
+    _sellerImageUrl = Parser.parseString(json['seller_image_url']);
+    _shopImageUrl = Parser.parseString(json['shop_image_url']);
+    _notificationImageUrl = Parser.parseString(json['notification_image_url']);
   }
 
   Map<String, dynamic> toJson() {
@@ -351,10 +353,10 @@ class StaticUrls {
   String get customerAccount => _customerAccount;
 
   StaticUrls.fromJson(Map<String, dynamic> json) {
-    _contactUs = json['contact_us'];
-    _brands = json['brands'];
-    _categories = json['categories'];
-    _customerAccount = json['customer_account'];
+    _contactUs = Parser.parseString(json['contact_us']);
+    _brands = Parser.parseString(json['brands']);
+    _categories = Parser.parseString(json['categories']);
+    _customerAccount = Parser.parseString(json['customer_account']);
   }
 
   Map<String, dynamic> toJson() {
@@ -380,8 +382,8 @@ class SocialLogin {
   bool get status => _status;
 
   SocialLogin.fromJson(Map<String, dynamic> json) {
-    _loginMedium = json['login_medium'];
-    _status = json['status'];
+    _loginMedium = Parser.parseString(json['login_medium']);
+    _status = Parser.parseBool(json['status']);
   }
 
   Map<String, dynamic> toJson() {
@@ -427,13 +429,13 @@ class Faq {
   String get updatedAt => _updatedAt;
 
   Faq.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _question = json['question'];
-    _answer = json['answer'];
-    _ranking = json['ranking'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _id = Parser.parseInt(json['id']);
+    _question = Parser.parseString(json['question']);
+    _answer = Parser.parseString(json['answer']);
+    _ranking = Parser.parseInt(json['ranking']);
+    _status = Parser.parseInt(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {
@@ -488,14 +490,14 @@ class CurrencyList {
   String get updatedAt => _updatedAt;
 
   CurrencyList.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _name = json['name'];
-    _symbol = json['symbol'];
-    _code = json['code'];
+    _id = Parser.parseInt(json['id']);
+    _name = Parser.parseString(json['name']);
+    _symbol = Parser.parseString(json['symbol']);
+    _code = Parser.parseString(json['code']);
     _exchangeRate = json['exchange_rate'].toDouble();
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _status = Parser.parseInt(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {
@@ -535,11 +537,11 @@ class Colors {
   String get updatedAt => _updatedAt;
 
   Colors.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _name = json['name'];
-    _code = json['code'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _id = Parser.parseInt(json['id']);
+    _name = Parser.parseString(json['name']);
+    _code = Parser.parseString(json['code']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {
@@ -580,10 +582,10 @@ class Announcement {
   String get textColor => _textColor;
   String get announcement => _announcement;
   Announcement.fromJson(Map<String, dynamic> json) {
-    _status = json['status'];
-    _color = json['color'];
-    _textColor = json['text_color'];
-    _announcement = json['announcement'];
+    _status = Parser.parseString(json['status']);
+    _color = Parser.parseString(json['color']);
+    _textColor = Parser.parseString(json['text_color']);
+    _announcement = Parser.parseString(json['announcement']);
   }
 
   Map<String, dynamic> toJson() {

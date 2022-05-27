@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sixvalley_ecommerce/data/datasource/remote/dio/dio_client.dart';
@@ -58,7 +59,6 @@ class CartRepo {
     if (cart.variant.isNotEmpty) {
       _data.addAll({'color': cart.color});
     }
-
     try {
       final response = await dioClient.post(
         AppConstants.ADD_TO_CART_URI,

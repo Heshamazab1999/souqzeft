@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class AddressModel {
   int id;
   int customerId;
@@ -33,21 +35,21 @@ class AddressModel {
       this.isBilling});
 
   AddressModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    customerId = json['customer_id'];
-    contactPersonName = json['contact_person_name'];
-    addressType = json['address_type'];
-    address = json['address'];
-    city = json['city'];
-    zip = json['zip'];
-    phone = json['phone'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    state = json['state'];
-    country = json['country'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    isBilling = json['is_billing'];
+    id = Parser.parseInt(json['id']);
+    customerId = Parser.parseInt(json['customer_id']);
+    contactPersonName = Parser.parseString(json['contact_person_name']);
+    addressType = Parser.parseString(json['address_type']);
+    address = Parser.parseString(json['address']);
+    city = Parser.parseString(json['city']);
+    zip = Parser.parseString(json['zip']);
+    phone = Parser.parseString(json['phone']);
+    createdAt = Parser.parseString(json['created_at']);
+    updatedAt = Parser.parseString(json['updated_at']);
+    state = Parser.parseString(json['state']);
+    country = Parser.parseString(json['country']);
+    latitude = Parser.parseString(json['latitude']);
+    longitude = Parser.parseString(json['longitude']);
+    isBilling = Parser.parseInt(json['is_billing']);
   }
 
   Map<String, dynamic> toJson() {

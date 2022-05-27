@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class SellerModel {
   Seller _seller;
   int _avgRating;
@@ -34,10 +36,10 @@ class SellerModel {
   SellerModel.fromJson(Map<String, dynamic> json) {
     _seller =
     json['seller'] != null ? new Seller.fromJson(json['seller']) : null;
-    _avgRating = json['avg_rating'];
-    _totalReview = json['total_review'];
-    _totalOrder = json['total_order'];
-    _totalProduct = json['total_product'];
+    _avgRating = Parser.parseInt(json['avg_rating']);
+    _totalReview = Parser.parseInt(json['total_review']);
+    _totalOrder = Parser.parseInt(json['total_order']);
+    _totalProduct = Parser.parseInt(json['total_product']);
   }
 
   Map<String, dynamic> toJson() {
@@ -96,11 +98,11 @@ class Seller {
   Shop get shop => _shop;
 
   Seller.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _fName = json['f_name'];
-    _lName = json['l_name'];
-    _phone = json['phone'];
-    _image = json['image'];
+    _id = Parser.parseInt(json['id']);
+    _fName = Parser.parseString(json['f_name']);
+    _lName = Parser.parseString(json['l_name']);
+    _phone = Parser.parseString(json['phone']);
+    _image = Parser.parseString(json['image']);
     _shop = json['shop'] != null ? new Shop.fromJson(json['shop']) : null;
   }
 
@@ -180,15 +182,15 @@ class Shop {
 
 
   Shop.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = Parser.parseInt(json['id']);
     _sellerId = int.parse(json['seller_id'].toString());
-    _name = json['name'];
-    _address = json['address'];
-    _contact = json['contact'];
-    _image = json['image'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _banner = json['banner'];
+    _name = Parser.parseString(json['name']);
+    _address = Parser.parseString(json['address']);
+    _contact = Parser.parseString(json['contact']);
+    _image = Parser.parseString(json['image']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _banner = Parser.parseString(json['banner']);
   }
 
   Map<String, dynamic> toJson() {

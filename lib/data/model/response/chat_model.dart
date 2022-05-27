@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class ChatModel {
   int _id;
   int _userId;
@@ -53,18 +55,18 @@ class ChatModel {
   int get shopId => _shopId;
 
   ChatModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _userId = json['user_id'];
-    _sellerId = json['seller_id'];
-    _message = json['message'];
-    _sentByCustomer = json['sent_by_customer'];
-    _sentBySeller = json['sent_by_seller'];
-    _seenByCustomer = json['seen_by_customer'];
-    _seenBySeller = json['seen_by_seller'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _shopId = json['shop_id'];
+    _id = Parser.parseInt(json['id']);
+    _userId = Parser.parseInt(json['user_id']);
+    _sellerId = Parser.parseInt(json['seller_id']);
+    _message = Parser.parseString(json['message']);
+    _sentByCustomer = Parser.parseInt(json['sent_by_customer']);
+    _sentBySeller = Parser.parseInt(json['sent_by_seller']);
+    _seenByCustomer = Parser.parseInt(json['seen_by_customer']);
+    _seenBySeller = Parser.parseInt(json['seen_by_seller']);
+    _status = Parser.parseInt(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _shopId = Parser.parseInt(json['shop_id']);
   }
 
   Map<String, dynamic> toJson() {
@@ -132,12 +134,12 @@ class SellerInfo {
 
 
   SellerInfo.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _fName = json['f_name'];
-    _lName = json['l_name'];
-    _phone = json['phone'];
-    _image = json['image'];
-    _email = json['email'];
+    _id = Parser.parseInt(json['id']);
+    _fName = Parser.parseString(json['f_name']);
+    _lName = Parser.parseString(json['l_name']);
+    _phone = Parser.parseString(json['phone']);
+    _image = Parser.parseString(json['image']);
+    _email = Parser.parseString(json['email']);
 
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
 
 class HomeCategoryProduct {
   int id;
@@ -25,14 +26,14 @@ class HomeCategoryProduct {
         this.translations});
 
   HomeCategoryProduct.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    slug = json['slug'];
-    icon = json['icon'];
-    parentId = json['parent_id'];
-    position = json['position'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    id = Parser.parseInt(json['id']);
+    name = Parser.parseString(json['name']);
+    slug = Parser.parseString(json['slug']);
+    icon = Parser.parseString(json['icon']);
+    parentId = Parser.parseInt(json['parent_id']);
+    position = Parser.parseInt(json['position']);
+    createdAt = Parser.parseString(json['created_at']);
+    updatedAt = Parser.parseString(json['updated_at']);
     if (json['products'] != null) {
       products = [];
       json['products'].forEach((v) { products.add(new Product.fromJson(v)); });

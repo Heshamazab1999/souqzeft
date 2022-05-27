@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class FlashDealModel {
   int _id;
   String _title;
@@ -61,20 +63,20 @@ class FlashDealModel {
   String get dealType => _dealType;
 
   FlashDealModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _title = json['title'];
-    _startDate = json['start_date'];
-    _endDate = json['end_date'];
-    _status = json['status'];
-    _featured = json['featured'];
-    _backgroundColor = json['background_color'];
-    _textColor = json['text_color'];
-    _banner = json['banner'];
-    _slug = json['slug'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _productId = json['product_id'];
-    _dealType = json['deal_type'];
+    _id = Parser.parseInt(json['id']);
+    _title = Parser.parseString(json['title']);
+    _startDate = Parser.parseString(json['start_date']);
+    _endDate = Parser.parseString(json['end_date']);
+    _status = Parser.parseInt(json['status']);
+    _featured = Parser.parseInt(json['featured']);
+    _backgroundColor = Parser.parseString(json['background_color']);
+    _textColor = Parser.parseString(json['text_color']);
+    _banner = Parser.parseString(json['banner']);
+    _slug = Parser.parseString(json['slug']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _productId = Parser.parseInt(json['product_id']);
+    _dealType = Parser.parseString(json['deal_type']);
   }
 
   Map<String, dynamic> toJson() {

@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class RegisterModel {
   String email;
   String password;
@@ -10,13 +12,13 @@ class RegisterModel {
   RegisterModel({this.email, this.password, this.fName, this.lName, this.socialId,this.loginMedium});
 
   RegisterModel.fromJson(Map<String, dynamic> json) {
-    email = json['email'];
-    password = json['password'];
-    fName = json['f_name'];
-    lName = json['l_name'];
-    phone = json['phone'];
-    socialId = json['social_id'];
-    loginMedium = json['login_medium'];
+    email = Parser.parseString(json['email']);
+    password = Parser.parseString(json['password']);
+    fName = Parser.parseString(json['f_name']);
+    lName = Parser.parseString(json['l_name']);
+    phone = Parser.parseString(json['phone']);
+    socialId = Parser.parseString(json['social_id']);
+    loginMedium = Parser.parseString(json['login_medium']);
   }
 
   Map<String, dynamic> toJson() {

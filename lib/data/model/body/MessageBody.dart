@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class MessageBody {
   String _sellerId;
   String _shopId;
@@ -14,9 +16,9 @@ class MessageBody {
   String get message => _message;
 
   MessageBody.fromJson(Map<String, dynamic> json) {
-    _sellerId = json['seller_id'];
-    _shopId = json['shop_id'];
-    _message = json['message'];
+    _sellerId = Parser.parseString(json['seller_id']);
+    _shopId = Parser.parseString(json['shop_id']);
+    _message = Parser.parseString(json['message']);
   }
 
   Map<String, dynamic> toJson() {

@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class NotificationModel {
   int _id;
   String _title;
@@ -33,13 +35,13 @@ class NotificationModel {
   String get updatedAt => _updatedAt;
 
   NotificationModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _title = json['title'];
-    _description = json['description'];
-    _image = json['image'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _id = Parser.parseInt(json['id']);
+    _title = Parser.parseString(json['title']);
+    _description = Parser.parseString(json['description']);
+    _image = Parser.parseString(json['image']);
+    _status = Parser.parseInt(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {

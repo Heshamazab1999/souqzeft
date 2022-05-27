@@ -1,6 +1,8 @@
 
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
 
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class FeaturedDealModel {
   int id;
   int flashDealId;
@@ -22,13 +24,13 @@ class FeaturedDealModel {
         this.product});
 
   FeaturedDealModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    flashDealId = json['flash_deal_id'];
-    productId = json['product_id'];
-    discount = json['discount'];
-    discountType = json['discount_type'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    id = Parser.parseInt(json['id']);
+    flashDealId = Parser.parseInt(json['flash_deal_id']);
+    productId = Parser.parseInt(json['product_id']);
+    discount = Parser.parseInt(json['discount']);
+    discountType = Parser.parseString(json['discount_type']);
+    createdAt = Parser.parseString(json['created_at']);
+    updatedAt = Parser.parseString(json['updated_at']);
     product = json['product'] != null ? new Product.fromJson(json['product']) : null;
   }
 

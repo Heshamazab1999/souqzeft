@@ -78,11 +78,8 @@ class ProductView extends StatelessWidget {
 
         return Column(children: [
 
-
-          !prodProvider.filterFirstLoading ? productList.length != 0 ?
-           StaggeredGridView.countBuilder(
-            itemCount: isHomePage? productList.length>4?
-            4:productList.length:productList.length,
+          StaggeredGridView.countBuilder(
+            itemCount: isHomePage? (productList.length>4? 4:productList.length):productList.length,
             crossAxisCount: 2,
             padding: EdgeInsets.all(0),
             physics: NeverScrollableScrollPhysics(),
@@ -91,7 +88,7 @@ class ProductView extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return ProductWidget(productModel: productList[index]);
             },
-          ) : SizedBox.shrink(): ProductShimmer(isHomePage: isHomePage ,isEnabled: prodProvider.firstLoading),
+          ),
 
           prodProvider.filterIsLoading ? Center(child: Padding(
             padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),

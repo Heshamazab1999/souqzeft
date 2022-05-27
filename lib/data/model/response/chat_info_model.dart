@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class ChatInfoModel {
   LastChat _lastChat;
   List<ChatList> _chatList;
@@ -143,17 +145,17 @@ class LastChat {
 
 
   LastChat.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _userId = json['user_id'];
-    _sellerId = json['seller_id'];
-    _message = json['message'];
-    _sentByCustomer = json['sent_by_customer'];
-    _sentBySeller = json['sent_by_seller'];
-    _seenByCustomer = json['seen_by_customer'];
-    _seenBySeller = json['seen_by_seller'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _shopId = json['shop_id'];
+    _id = Parser.parseInt(json['id']);
+    _userId = Parser.parseInt(json['user_id']);
+    _sellerId = Parser.parseInt(json['seller_id']);
+    _message = Parser.parseString(json['message']);
+    _sentByCustomer = Parser.parseInt(json['sent_by_customer']);
+    _sentBySeller = Parser.parseInt(json['sent_by_seller']);
+    _seenByCustomer = Parser.parseInt(json['seen_by_customer']);
+    _seenBySeller = Parser.parseInt(json['seen_by_seller']);
+    _status = Parser.parseInt(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _shopId = Parser.parseInt(json['shop_id']);
     _sellerInfo = json['seller_info'] != null
         ? new SellerInfo.fromJson(json['seller_info'])
         : null;
@@ -307,24 +309,24 @@ class SellerInfo {
 
 
   SellerInfo.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _fName = json['f_name'];
-    _lName = json['l_name'];
-    _phone = json['phone'];
-    _image = json['image'];
-    _email = json['email'];
-    _password = json['password'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _bankName = json['bank_name'];
-    _branch = json['branch'];
-    _accountNo = json['account_no'];
-    _holderName = json['holder_name'];
-    _authToken = json['auth_token'];
-    _salesCommissionPercentage = json['sales_commission_percentage'];
-    _gst = json['gst'];
-    _cmFirebaseToken = json['cm_firebase_token'];
+    _id = Parser.parseInt(json['id']);
+    _fName = Parser.parseString(json['f_name']);
+    _lName = Parser.parseString(json['l_name']);
+    _phone = Parser.parseString(json['phone']);
+    _image = Parser.parseString(json['image']);
+    _email = Parser.parseString(json['email']);
+    _password = Parser.parseString(json['password']);
+    _status = Parser.parseString(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _bankName = Parser.parseString(json['bank_name']);
+    _branch = Parser.parseString(json['branch']);
+    _accountNo = Parser.parseString(json['account_no']);
+    _holderName = Parser.parseString(json['holder_name']);
+    _authToken = Parser.parseString(json['auth_token']);
+    _salesCommissionPercentage = Parser.parseInt(json['sales_commission_percentage']);
+    _gst = Parser.parseString(json['gst']);
+    _cmFirebaseToken = Parser.parseString(json['cm_firebase_token']);
     _posStatus = int.parse(json['pos_status'].toString());
   }
 
@@ -417,15 +419,15 @@ class Shop {
 
 
   Shop.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = Parser.parseInt(json['id']);
     _sellerId = int.parse(json['seller_id'].toString());
-    _name = json['name'];
-    _address = json['address'];
-    _contact = json['contact'];
-    _image = json['image'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _banner = json['banner'];
+    _name = Parser.parseString(json['name']);
+    _address = Parser.parseString(json['address']);
+    _contact = Parser.parseString(json['contact']);
+    _image = Parser.parseString(json['image']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _banner = Parser.parseString(json['banner']);
   }
 
   Map<String, dynamic> toJson() {
@@ -548,20 +550,20 @@ class ChatList {
 
 
   ChatList.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _userId = json['user_id'];
-    _sellerId = json['seller_id'];
-    _message = json['message'];
-    _sentByCustomer = json['sent_by_customer'];
-    _sentBySeller = json['sent_by_seller'];
-    _seenByCustomer = json['seen_by_customer'];
-    _seenBySeller = json['seen_by_seller'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _shopId = json['shop_id'];
-    _name = json['name'];
-    _image = json['image'];
+    _id = Parser.parseInt(json['id']);
+    _userId = Parser.parseInt(json['user_id']);
+    _sellerId = Parser.parseInt(json['seller_id']);
+    _message = Parser.parseString(json['message']);
+    _sentByCustomer = Parser.parseInt(json['sent_by_customer']);
+    _sentBySeller = Parser.parseInt(json['sent_by_seller']);
+    _seenByCustomer = Parser.parseInt(json['seen_by_customer']);
+    _seenBySeller = Parser.parseInt(json['seen_by_seller']);
+    _status = Parser.parseInt(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
+    _shopId = Parser.parseInt(json['shop_id']);
+    _name = Parser.parseString(json['name']);
+    _image = Parser.parseString(json['image']);
     _sellerInfo = json['seller_info'] != null
         ? new SellerInfo.fromJson(json['seller_info'])
         : null;
@@ -682,17 +684,17 @@ class UniqueShops {
 
 
   UniqueShops.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _userId = json['user_id'];
-    _sellerId = json['seller_id'];
-    _message = json['message'];
-    _sentByCustomer = json['sent_by_customer'];
-    _sentBySeller = json['sent_by_seller'];
-    _seenByCustomer = json['seen_by_customer'];
-    _seenBySeller = json['seen_by_seller'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _shopId = json['shop_id'];
+    _id = Parser.parseInt(json['id']);
+    _userId = Parser.parseInt(json['user_id']);
+    _sellerId = Parser.parseInt(json['seller_id']);
+    _message = Parser.parseString(json['message']);
+    _sentByCustomer = Parser.parseInt(json['sent_by_customer']);
+    _sentBySeller = Parser.parseInt(json['sent_by_seller']);
+    _seenByCustomer = Parser.parseInt(json['seen_by_customer']);
+    _seenBySeller = Parser.parseInt(json['seen_by_seller']);
+    _status = Parser.parseInt(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _shopId = Parser.parseInt(json['shop_id']);
     _sellerInfo = json['seller_info'] != null
         ? new SellerInfo.fromJson(json['seller_info'])
         : null;

@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class SupportTicketBody {
   String _type;
   String _subject;
@@ -14,9 +16,9 @@ class SupportTicketBody {
   String get description => _description;
 
   SupportTicketBody.fromJson(Map<String, dynamic> json) {
-    _type = json['type'];
-    _subject = json['subject'];
-    _description = json['description'];
+    _type = Parser.parseString(json['type']);
+    _subject = Parser.parseString(json['subject']);
+    _description = Parser.parseString(json['description']);
   }
 
   Map<String, dynamic> toJson() {

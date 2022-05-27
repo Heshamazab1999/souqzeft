@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class SupportTicketModel {
   int _id;
   int _customerId;
@@ -45,16 +47,16 @@ class SupportTicketModel {
   String get updatedAt => _updatedAt;
 
   SupportTicketModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _customerId = json['customer_id'];
-    _subject = json['subject'];
-    _type = json['type'];
-    _priority = json['priority'];
-    _description = json['description'];
-    _reply = json['reply'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _id = Parser.parseInt(json['id']);
+    _customerId = Parser.parseInt(json['customer_id']);
+    _subject = Parser.parseString(json['subject']);
+    _type = Parser.parseString(json['type']);
+    _priority = Parser.parseString(json['priority']);
+    _description = Parser.parseString(json['description']);
+    _reply = Parser.parseString(json['reply']);
+    _status = Parser.parseString(json['status']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {

@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class Category {
   int _id;
   String _name;
@@ -41,14 +43,14 @@ class Category {
   List<SubCategory> get subCategories => _subCategories;
 
   Category.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _name = json['name'];
-    _slug = json['slug'];
-    _icon = json['icon'];
-    _parentId = json['parent_id'];
-    _position = json['position'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _id = Parser.parseInt(json['id']);
+    _name = Parser.parseString(json['name']);
+    _slug = Parser.parseString(json['slug']);
+    _icon = Parser.parseString(json['icon']);
+    _parentId = Parser.parseInt(json['parent_id']);
+    _position = Parser.parseInt(json['position']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
     if (json['childes'] != null) {
       _subCategories = [];
       json['childes'].forEach((v) {
@@ -117,14 +119,14 @@ class SubCategory {
   List<SubSubCategory> get subSubCategories => _subSubCategories;
 
   SubCategory.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _name = json['name'];
-    _slug = json['slug'];
-    _icon = json['icon'];
-    _parentId = json['parent_id'];
-    _position = json['position'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _id = Parser.parseInt(json['id']);
+    _name = Parser.parseString(json['name']);
+    _slug = Parser.parseString(json['slug']);
+    _icon = Parser.parseString(json['icon']);
+    _parentId = Parser.parseInt(json['parent_id']);
+    _position = Parser.parseInt(json['position']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
     if (json['childes'] != null) {
       _subSubCategories = [];
       json['childes'].forEach((v) {
@@ -189,14 +191,14 @@ class SubSubCategory {
   String get updatedAt => _updatedAt;
 
   SubSubCategory.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _name = json['name'];
-    _slug = json['slug'];
-    _icon = json['icon'];
-    _parentId = json['parent_id'];
-    _position = json['position'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _id = Parser.parseInt(json['id']);
+    _name = Parser.parseString(json['name']);
+    _slug = Parser.parseString(json['slug']);
+    _icon = Parser.parseString(json['icon']);
+    _parentId = Parser.parseInt(json['parent_id']);
+    _position = Parser.parseInt(json['position']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {

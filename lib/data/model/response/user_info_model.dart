@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class UserInfoModel {
   int id;
   String name;
@@ -15,17 +17,17 @@ class UserInfoModel {
       {this.id, this.name, this.method, this.fName, this.lName, this.phone, this.image, this.email, this.emailVerifiedAt, this.createdAt, this.updatedAt});
 
   UserInfoModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    method = json['_method'];
-    fName = json['f_name'];
-    lName = json['l_name'];
-    phone = json['phone'];
-    image = json['image'];
-    email = json['email'];
-    emailVerifiedAt = json['email_verified_at'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    id = Parser.parseInt(json['id']);
+    name = Parser.parseString(json['name']);
+    method = Parser.parseString(json['_method']);
+    fName = Parser.parseString(json['f_name']);
+    lName = Parser.parseString(json['l_name']);
+    phone = Parser.parseString(json['phone']);
+    image = Parser.parseString(json['image']);
+    email = Parser.parseString(json['email']);
+    emailVerifiedAt = Parser.parseString(json['email_verified_at']);
+    createdAt = Parser.parseString(json['created_at']);
+    updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {

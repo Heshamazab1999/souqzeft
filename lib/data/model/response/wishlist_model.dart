@@ -1,5 +1,7 @@
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
 
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class WishListModel {
   int id;
   int customerId;
@@ -11,11 +13,11 @@ class WishListModel {
   WishListModel({this.id, this.customerId, this.productId, this.createdAt, this.updatedAt, this.product});
 
   WishListModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    customerId = json['customer_id'];
-    productId = json['product_id'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    id = Parser.parseInt(json['id']);
+    customerId = Parser.parseInt(json['customer_id']);
+    productId = Parser.parseInt(json['product_id']);
+    createdAt = Parser.parseString(json['created_at']);
+    updatedAt = Parser.parseString(json['updated_at']);
     product = json['product'] != null ? new Product.fromJson(json['product']) : null;
   }
 

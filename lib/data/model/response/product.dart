@@ -166,34 +166,34 @@
 // }
 //
 //   Product.fromJson(dynamic json) {
-//     _id = json['id'];
-//     _addedBy = json['added_by'];
-//     _userId = json['user_id'];
-//     _name = json['name'];
-//     _slug = json['slug'];
+//     _id = Parser.parseString(json['id']);
+//     _addedBy = Parser.parseString(json['added_by']);
+//     _userId = Parser.parseString(json['user_id']);
+//     _name = Parser.parseString(json['name']);
+//     _slug = Parser.parseString(json['slug']);
 //     if (json['category_ids'] != null) {
 //       _categoryIds = [];
 //       json['category_ids'].forEach((v) {
 //         _categoryIds.add(CategoryIds.fromJson(v));
 //       });
 //     }
-//     _brandId = json['brand_id'];
-//     _unit = json['unit'];
-//     _minQty = json['min_qty'];
-//     _refundable = json['refundable'];
-//     _images = json['images'];
-//     _thumbnail = json['thumbnail'];
-//     _featured = json['featured'];
-//     _flashDeal = json['flash_deal'];
-//     _videoProvider = json['video_provider'];
-//     _videoUrl = json['video_url'];
+//     _brandId = Parser.parseString(json['brand_id']);
+//     _unit = Parser.parseString(json['unit']);
+//     _minQty = Parser.parseString(json['min_qty']);
+//     _refundable = Parser.parseString(json['refundable']);
+//     _images = Parser.parseString(json['images']);
+//     _thumbnail = Parser.parseString(json['thumbnail']);
+//     _featured = Parser.parseString(json['featured']);
+//     _flashDeal = Parser.parseString(json['flash_deal']);
+//     _videoProvider = Parser.parseString(json['video_provider']);
+//     _videoUrl = Parser.parseString(json['video_url']);
 //     if (json['colors'] != null) {
 //       _colors = [];
 //       json['colors'].forEach((v) {
 //         _colors.add(Dynamic.fromJson(v));
 //       });
 //     }
-//     _variantProduct = json['variant_product'];
+//     _variantProduct = Parser.parseString(json['variant_product']);
 //     if (json['attributes'] != null) {
 //       _attributes = [];
 //       json['attributes'].forEach((v) {
@@ -212,37 +212,37 @@
 //         _variation.add(Dynamic.fromJson(v));
 //       });
 //     }
-//     _published = json['published'];
-//     _unitPrice = json['unit_price'];
-//     _purchasePrice = json['purchase_price'];
-//     _tax = json['tax'];
-//     _taxType = json['tax_type'];
-//     _discount = json['discount'];
-//     _discountType = json['discount_type'];
-//     _currentStock = json['current_stock'];
-//     _details = json['details'];
-//     _freeShipping = json['free_shipping'];
-//     _attachment = json['attachment'];
-//     _createdAt = json['created_at'];
-//     _updatedAt = json['updated_at'];
-//     _status = json['status'];
-//     _featuredStatus = json['featured_status'];
-//     _metaTitle = json['meta_title'];
-//     _metaDescription = json['meta_description'];
-//     _metaImage = json['meta_image'];
-//     _requestStatus = json['request_status'];
-//     _deniedNote = json['denied_note'];
-//     _shippingCost = json['shipping_cost'];
-//     _multiplyQty = json['multiply_qty'];
-//     _tempShippingCost = json['temp_shipping_cost'];
-//     _isShippingCostUpdated = json['is_shipping_cost_updated'];
-//     _parcode = json['parcode'];
-//     _largeUnit = json['large_unit'];
-//     _largeUnitParcode = json['large_unit_parcode'];
-//     _largeUnitQuantity = json['large_unit_quantity'];
-//     _largeUnitPrice = json['large_unit_price'];
-//     _reviewsCount = json['reviews_count'];
-//     _quantityFromPc = json['quantity_from_pc'];
+//     _published = Parser.parseString(json['published']);
+//     _unitPrice = Parser.parseString(json['unit_price']);
+//     _purchasePrice = Parser.parseString(json['purchase_price']);
+//     _tax = Parser.parseString(json['tax']);
+//     _taxType = Parser.parseString(json['tax_type']);
+//     _discount = Parser.parseString(json['discount']);
+//     _discountType = Parser.parseString(json['discount_type']);
+//     _currentStock = Parser.parseString(json['current_stock']);
+//     _details = Parser.parseString(json['details']);
+//     _freeShipping = Parser.parseString(json['free_shipping']);
+//     _attachment = Parser.parseString(json['attachment']);
+//     _createdAt = Parser.parseString(json['created_at']);
+//     _updatedAt = Parser.parseString(json['updated_at']);
+//     _status = Parser.parseString(json['status']);
+//     _featuredStatus = Parser.parseString(json['featured_status']);
+//     _metaTitle = Parser.parseString(json['meta_title']);
+//     _metaDescription = Parser.parseString(json['meta_description']);
+//     _metaImage = Parser.parseString(json['meta_image']);
+//     _requestStatus = Parser.parseString(json['request_status']);
+//     _deniedNote = Parser.parseString(json['denied_note']);
+//     _shippingCost = Parser.parseString(json['shipping_cost']);
+//     _multiplyQty = Parser.parseString(json['multiply_qty']);
+//     _tempShippingCost = Parser.parseString(json['temp_shipping_cost']);
+//     _isShippingCostUpdated = Parser.parseString(json['is_shipping_cost_updated']);
+//     _parcode = Parser.parseString(json['parcode']);
+//     _largeUnit = Parser.parseString(json['large_unit']);
+//     _largeUnitParcode = Parser.parseString(json['large_unit_parcode']);
+//     _largeUnitQuantity = Parser.parseString(json['large_unit_quantity']);
+//     _largeUnitPrice = Parser.parseString(json['large_unit_price']);
+//     _reviewsCount = Parser.parseString(json['reviews_count']);
+//     _quantityFromPc = Parser.parseString(json['quantity_from_pc']);
 //     if (json['reviews'] != null) {
 //       _reviews = [];
 //       json['reviews'].forEach((v) {
@@ -453,8 +453,8 @@
 // }
 //
 //   CategoryIds.fromJson(dynamic json) {
-//     _id = json['id'];
-//     _position = json['position'];
+//     _id = Parser.parseString(json['id']);
+//     _position = Parser.parseString(json['position']);
 //   }
 //   String _id;
 //   int _position;

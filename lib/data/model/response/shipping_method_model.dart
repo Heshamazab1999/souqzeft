@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class ShippingMethodModel {
   int id;
   int creatorId;
@@ -33,15 +35,15 @@ class ShippingMethodModel {
 
 
   ShippingMethodModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    creatorId = json['creator_id'];
-    creatorType = json['creator_type'];
-    title = json['title'];
+    id = Parser.parseInt(json['id']);
+    creatorId = Parser.parseInt(json['creator_id']);
+    creatorType = Parser.parseString(json['creator_type']);
+    title = Parser.parseString(json['title']);
     cost = json['cost'].toDouble();
-    duration = json['duration'];
-    status = json['status'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    duration = Parser.parseString(json['duration']);
+    status = Parser.parseInt(json['status']);
+    createdAt = Parser.parseString(json['created_at']);
+    updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {

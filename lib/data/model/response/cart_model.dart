@@ -1,5 +1,7 @@
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
 
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class CartModel {
   int _id;
   String _image;
@@ -91,29 +93,29 @@ class CartModel {
   int get countPieceInKr => _countPieceInKr;
 
   CartModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _name = json['name'];
-    _seller = json['seller'];
-    _thumbnail = json['thumbnail'];
+    _id = Parser.parseInt(json['id']);
+    _name = Parser.parseString(json['name']);
+    _seller = Parser.parseString(json['seller']);
+    _thumbnail = Parser.parseString(json['thumbnail']);
     _sellerId = int.parse(json['seller_id'].toString());
-    _sellerIs = json['seller_is'];
-    _image = json['image'];
+    _sellerIs = Parser.parseString(json['seller_is']);
+    _image = Parser.parseString(json['image']);
     _price = json['price'].toDouble();
-    _discountedPrice = json['discounted_price'];
+    _discountedPrice = Parser.parseDouble(json['discounted_price']);
     _quantity = int.parse(json['quantity'].toString());
-    _maxQuantity = json['max_quantity'];
-    _variant = json['variant'];
-    _color = json['color'];
+    _maxQuantity = Parser.parseInt(json['max_quantity']);
+    _variant = Parser.parseString(json['variant']);
+    _color = Parser.parseString(json['color']);
     _variation = json['variation'] != null
         ? Variation.fromJson(json['variation'])
         : null;
     _discount = json['discount'].toDouble();
-    _discountType = json['discount_type'];
+    _discountType = Parser.parseString(json['discount_type']);
     _tax = json['tax'].toDouble();
-    _taxType = json['tax_type'];
-    shippingMethodId = json['shipping_method_id'];
-    _cartGroupId = json['cart_group_id'];
-    _shopInfo = json['shop_info'];
+    _taxType = Parser.parseString(json['tax_type']);
+    shippingMethodId = Parser.parseInt(json['shipping_method_id']);
+    _cartGroupId = Parser.parseString(json['cart_group_id']);
+    _shopInfo = Parser.parseString(json['shop_info']);
     if (json['choice_options'] != null) {
       _choiceOptions = [];
       json['choice_options'].forEach((v) {
@@ -127,7 +129,7 @@ class CartModel {
       _shippingCost = double.parse(json['shipping_cost'].toString());
     }
     if (json['shipping_type'] != null) {
-      _shippingType = json['shipping_type'];
+      _shippingType = Parser.parseString(json['shipping_type']);
     }
   }
 

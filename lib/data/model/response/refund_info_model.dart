@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class RefundInfoModel {
   bool alreadyRequested;
   bool expired;
@@ -6,8 +8,8 @@ class RefundInfoModel {
   RefundInfoModel({this.alreadyRequested, this.expired, this.refund});
 
   RefundInfoModel.fromJson(Map<String, dynamic> json) {
-    alreadyRequested = json['already_requested'];
-    expired = json['expired'];
+    alreadyRequested = Parser.parseBool(json['already_requested']);
+    expired = Parser.parseBool(json['expired']);
     refund =
     json['refund'] != null ? new Refund.fromJson(json['refund']) : null;
   }
@@ -43,7 +45,7 @@ class Refund {
 
   Refund.fromJson(Map<String, dynamic> json) {
     productPrice = json['product_price'].toDouble();
-    quntity = json['quntity'];
+    quntity = Parser.parseInt(json['quntity']);
     productTotalDiscount = json['product_total_discount'].toDouble();
     productTotalTax = json['product_total_tax'].toDouble();
     subtotal = json['subtotal'].toDouble();

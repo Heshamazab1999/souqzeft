@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class SocialLoginModel {
   String token;
   String uniqueId;
@@ -7,10 +9,10 @@ class SocialLoginModel {
   SocialLoginModel({this.token, this.uniqueId, this.medium, this.email});
 
   SocialLoginModel.fromJson(Map<String, dynamic> json) {
-    token = json['token'];
-    uniqueId = json['unique_id'];
-    medium = json['medium'];
-    email = json['email'];
+    token = Parser.parseString(json['token']);
+    uniqueId = Parser.parseString(json['unique_id']);
+    medium = Parser.parseString(json['medium']);
+    email = Parser.parseString(json['email']);
 
   }
 

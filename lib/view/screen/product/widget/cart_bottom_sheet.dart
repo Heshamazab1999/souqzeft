@@ -377,10 +377,10 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                           } else {
                                             print(widget
                                                 .product.largeUnitQuantity);
-                                            // Provider.of<ProductDetailsProvider>(
-                                            //         context,
-                                            //         listen: false)
-                                            //     .setIsPiece(false);
+                                            Provider.of<ProductDetailsProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .setIsPiece(false);
                                           }
                                         },
                                         child: Container(
@@ -536,8 +536,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                                 isPiece,
                                                 largeUnitQuantity == null
                                                     ? null
-                                                    : int.parse(
-                                                        largeUnitQuantity),
+                                                    : widget.product.quantityFromPc,
                                               );
 
                                               // cart.variations = _variation;
@@ -639,7 +638,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                                             .shippingCost ??
                                                         0,
                                                 isPiece,
-                                                int.parse(largeUnitQuantity),
+                                                widget.product.quantityFromPc,
                                               );
 
                                               // cart.variations = _variation;

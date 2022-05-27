@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class ProductModel {
   int _totalSize;
   int _limit;
@@ -22,9 +24,9 @@ class ProductModel {
   List<Product> get products => _products;
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    _totalSize = json['total_size'];
-    _limit = json['limit'];
-    _offset = json['offset'];
+    _totalSize = Parser.parseInt(json['total_size']);
+    _limit = Parser.parseInt(json['limit']);
+    _offset = Parser.parseInt(json['offset']);
     if (json['products'] != null) {
       _products = [];
       json['products'].forEach((v) {
@@ -159,27 +161,27 @@ class ProductModel {
 //   }
 //
 //   Product.fromJson(dynamic json) {
-//     _id = json['id'];
-//     _addedBy = json['added_by'];
-//     _userId = json['user_id'];
-//     _name = json['name'];
-//     _slug = json['slug'];
+//     _id = Parser.parseString(json['id']);
+//     _addedBy = Parser.parseString(json['added_by']);
+//     _userId = Parser.parseString(json['user_id']);
+//     _name = Parser.parseString(json['name']);
+//     _slug = Parser.parseString(json['slug']);
 //     if (json['category_ids'] != null) {
 //       _categoryIds = [];
 //       json['category_ids'].forEach((v) {
 //         _categoryIds.add(CategoryIds.fromJson(v));
 //       });
 //     }
-//     _brandId = json['brand_id'];
-//     _unit = json['unit'];
-//     _minQty = json['min_qty'];
-//     _refundable = json['refundable'];
-//     _images = json['images'];
-//     _thumbnail = json['thumbnail'];
-//     _featured = json['featured'];
-//     _flashDeal = json['flash_deal'];
-//     _videoProvider = json['video_provider'];
-//     _videoUrl = json['video_url'];
+//     _brandId = Parser.parseString(json['brand_id']);
+//     _unit = Parser.parseString(json['unit']);
+//     _minQty = Parser.parseString(json['min_qty']);
+//     _refundable = Parser.parseString(json['refundable']);
+//     _images = Parser.parseString(json['images']);
+//     _thumbnail = Parser.parseString(json['thumbnail']);
+//     _featured = Parser.parseString(json['featured']);
+//     _flashDeal = Parser.parseString(json['flash_deal']);
+//     _videoProvider = Parser.parseString(json['video_provider']);
+//     _videoUrl = Parser.parseString(json['video_url']);
 //     if (json['colors'] != null) {
 //       _colors = [];
 //       try {
@@ -223,39 +225,39 @@ class ProductModel {
 //         });
 //       }
 //     }
-//     _published = json['published'];
-//     _unitPrice = json['unit_price'];
-//     _purchasePrice = json['purchase_price'];
-//     _tax = json['tax'];
-//     _taxType = json['tax_type'];
-//     _discount = json['discount'];
-//     _discountType = json['discount_type'];
-//     _currentStock = json['current_stock'];
-//     _details = json['details'];
-//     _freeShipping = json['free_shipping'];
-//     _attachment = json['attachment'];
-//     _createdAt = json['created_at'];
-//     _updatedAt = json['updated_at'];
-//     _status = json['status'];
-//     _featuredStatus = json['featured_status'];
-//     _metaTitle = json['meta_title'];
-//     _metaDescription = json['meta_description'];
-//     _metaImage = json['meta_image'];
-//     _requestStatus = json['request_status'];
-//     _deniedNote = json['denied_note'];
-//     _shippingCost = json['shipping_cost'];
-//     _multiplyQty = json['multiply_qty'];
-//     _tempShippingCost = json['temp_shipping_cost'];
-//     _isShippingCostUpdated = json['is_shipping_cost_updated'];
-//     _parcode = json['parcode'];
-//     _largeUnit = json['large_unit'];
-//     _largeUnitParcode = json['large_unit_parcode'];
-//     _largeUnitQuantity = json['large_unit_quantity'];
-//     _largeUnitPrice = json['large_unit_price'];
-//     _reviewsCount = json['reviews_count'];
-//     _quantityFromPc = json['quantity_from_pc'];
-//     _reviews = json['reviews'];
-//     _translations = json['translations'];
+//     _published = Parser.parseString(json['published']);
+//     _unitPrice = Parser.parseString(json['unit_price']);
+//     _purchasePrice = Parser.parseString(json['purchase_price']);
+//     _tax = Parser.parseString(json['tax']);
+//     _taxType = Parser.parseString(json['tax_type']);
+//     _discount = Parser.parseString(json['discount']);
+//     _discountType = Parser.parseString(json['discount_type']);
+//     _currentStock = Parser.parseString(json['current_stock']);
+//     _details = Parser.parseString(json['details']);
+//     _freeShipping = Parser.parseString(json['free_shipping']);
+//     _attachment = Parser.parseString(json['attachment']);
+//     _createdAt = Parser.parseString(json['created_at']);
+//     _updatedAt = Parser.parseString(json['updated_at']);
+//     _status = Parser.parseString(json['status']);
+//     _featuredStatus = Parser.parseString(json['featured_status']);
+//     _metaTitle = Parser.parseString(json['meta_title']);
+//     _metaDescription = Parser.parseString(json['meta_description']);
+//     _metaImage = Parser.parseString(json['meta_image']);
+//     _requestStatus = Parser.parseString(json['request_status']);
+//     _deniedNote = Parser.parseString(json['denied_note']);
+//     _shippingCost = Parser.parseString(json['shipping_cost']);
+//     _multiplyQty = Parser.parseString(json['multiply_qty']);
+//     _tempShippingCost = Parser.parseString(json['temp_shipping_cost']);
+//     _isShippingCostUpdated = Parser.parseString(json['is_shipping_cost_updated']);
+//     _parcode = Parser.parseString(json['parcode']);
+//     _largeUnit = Parser.parseString(json['large_unit']);
+//     _largeUnitParcode = Parser.parseString(json['large_unit_parcode']);
+//     _largeUnitQuantity = Parser.parseString(json['large_unit_quantity']);
+//     _largeUnitPrice = Parser.parseString(json['large_unit_price']);
+//     _reviewsCount = Parser.parseString(json['reviews_count']);
+//     _quantityFromPc = Parser.parseString(json['quantity_from_pc']);
+//     _reviews = Parser.parseString(json['reviews']);
+//     _translations = Parser.parseString(json['translations']);
 //   }
 //
 //   int _id;
@@ -508,8 +510,8 @@ class ProductModel {
 //   }
 //
 //   CategoryIds.fromJson(dynamic json) {
-//     _id = json['id'];
-//     _position = json['position'];
+//     _id = Parser.parseString(json['id']);
+//     _position = Parser.parseString(json['position']);
 //   }
 //
 //   String _id;
@@ -707,11 +709,11 @@ class Product {
   int get quantityFromPc => _quantityFromPc;
 
   Product.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _addedBy = json['added_by'];
-    _userId = json['user_id'];
-    _name = json['name'];
-    _slug = json['slug'];
+    _id = Parser.parseInt(json['id']);
+    _addedBy = Parser.parseString(json['added_by']);
+    _userId = Parser.parseInt(json['user_id']);
+    _name = Parser.parseString(json['name']);
+    _slug = Parser.parseString(json['slug']);
     if (json['category_ids'] != null) {
       _categoryIds = [];
       try {
@@ -724,8 +726,8 @@ class Product {
         });
       }
     }
-    _unit = json['unit'];
-    _minQty = json['min_qty'];
+    _unit = Parser.parseString(json['unit']);
+    _minQty = Parser.parseInt(json['min_qty']);
     if (json['images'] != null) {
       try {
         _images = json['images'] != null ? json['images'].cast<String>() : [];
@@ -736,7 +738,7 @@ class Product {
       }
     }
     //_images = json['images'] != null ? json['images'].cast<String>() : [];
-    _thumbnail = json['thumbnail'];
+    _thumbnail = Parser.parseString(json['thumbnail']);
     if (json['colors'] != null) {
       _colors = [];
       try {
@@ -790,15 +792,15 @@ class Product {
     if (json['tax'] != null) {
       _tax = json['tax'].toDouble();
     }
-    _taxType = json['tax_type'];
+    _taxType = Parser.parseString(json['tax_type']);
     if (json['discount'] != null) {
       _discount = json['discount'].toDouble();
     }
-    _discountType = json['discount_type'];
-    _currentStock = json['current_stock'];
-    _details = json['details'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    _discountType = Parser.parseString(json['discount_type']);
+    _currentStock = Parser.parseInt(json['current_stock']);
+    _details = Parser.parseString(json['details']);
+    _createdAt = Parser.parseString(json['created_at']);
+    _updatedAt = Parser.parseString(json['updated_at']);
     if (json['rating'] != null) {
       _rating = [];
       json['rating'].forEach((v) {
@@ -814,12 +816,12 @@ class Product {
     if (json['reviews_count'] != null) {
       _reviewCount = int.parse(json['reviews_count'].toString());
     }
-    _parcode = json['parcode'];
-    _largeUnit = json['large_unit'];
-    _largeUnitParcode = json['large_unit_parcode'];
-    _largeUnitQuantity = json['large_unit_quantity'];
-    _largeUnitPrice = json['large_unit_price'];
-    _quantityFromPc = json['quantity_from_pc'];
+    _parcode = Parser.parseString(json['parcode']);
+    _largeUnit = Parser.parseString(json['large_unit']);
+    _largeUnitParcode = Parser.parseString(json['large_unit_parcode']);
+    _largeUnitQuantity = Parser.parseString(json['large_unit_quantity']);
+    _largeUnitPrice = Parser.parseString(json['large_unit_price']);
+    _quantityFromPc = Parser.parseInt(json['quantity_from_pc']);
   }
 
   Map<String, dynamic> toJson() {
@@ -883,7 +885,7 @@ class CategoryIds {
   int get position => _position;
 
   CategoryIds.fromJson(Map<String, dynamic> json) {
-    _position = json['position'];
+    _position = Parser.parseInt(json['position']);
   }
 
   Map<String, dynamic> toJson() {
@@ -907,8 +909,8 @@ class ProductColors {
   String get code => _code;
 
   ProductColors.fromJson(Map<String, dynamic> json) {
-    _name = json['name'];
-    _code = json['code'];
+    _name = Parser.parseString(json['name']);
+    _code = Parser.parseString(json['code']);
   }
 
   Map<String, dynamic> toJson() {
@@ -937,8 +939,8 @@ class ChoiceOptions {
   List<String> get options => _options;
 
   ChoiceOptions.fromJson(Map<String, dynamic> json) {
-    _name = json['name'];
-    _title = json['title'];
+    _name = Parser.parseString(json['name']);
+    _title = Parser.parseString(json['title']);
     _options = json['options'].cast<String>();
   }
 
@@ -973,10 +975,10 @@ class Variation {
   int get qty => _qty;
 
   Variation.fromJson(Map<String, dynamic> json) {
-    _type = json['type'];
+    _type = Parser.parseString(json['type']);
     _price = json['price'].toDouble();
-    _sku = json['sku'];
-    _qty = json['qty'];
+    _sku = Parser.parseString(json['sku']);
+    _qty = Parser.parseInt(json['qty']);
   }
 
   Map<String, dynamic> toJson() {
@@ -1004,7 +1006,7 @@ class Rating {
 
   Rating.fromJson(Map<String, dynamic> json) {
     _average = json['average'].toString();
-    _productId = json['product_id'];
+    _productId = Parser.parseInt(json['product_id']);
   }
 
   Map<String, dynamic> toJson() {

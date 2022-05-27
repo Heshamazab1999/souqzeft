@@ -1,3 +1,5 @@
+import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
+
 class SupportReplyModel {
   int id;
   String customerMessage;
@@ -13,11 +15,11 @@ class SupportReplyModel {
         this.updatedAt});
 
   SupportReplyModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    customerMessage = json['customer_message'];
-    adminMessage = json['admin_message'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    id = Parser.parseInt(json['id']);
+    customerMessage = Parser.parseString(json['customer_message']);
+    adminMessage = Parser.parseString(json['admin_message']);
+    createdAt = Parser.parseString(json['created_at']);
+    updatedAt = Parser.parseString(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {
