@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/cart_model.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
@@ -19,6 +18,7 @@ import 'package:flutter_sixvalley_ecommerce/view/basewidget/button/custom_button
 import 'package:flutter_sixvalley_ecommerce/view/basewidget/show_custom_snakbar.dart';
 import 'package:flutter_sixvalley_ecommerce/view/screen/cart/cart_screen.dart';
 import 'package:provider/provider.dart';
+
 
 class CartBottomSheet extends StatefulWidget {
   final Product product;
@@ -356,10 +356,10 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                     ),
                                     shrinkWrap: true,
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemCount: widget.label.length,
-                                    // widget.product.largeUnitQuantity != null
-                                    //     ? 2
-                                    //     : 1,
+                                    itemCount:
+                                        widget.product.quantityFromPc == null
+                                            ? 1
+                                            : 2,
 
                                     // itemCount: widget.product.choiceOptions[index].options.length,
                                     itemBuilder: (context, i) {
@@ -400,7 +400,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                           child: Center(
                                             child: FittedBox(
                                               child: Text(
-                                                  '${getTranslated(widget.label[i], context)}${i == 0 ? '' : ' = ${widget.product.largeUnitQuantity}'}',
+                                                  '${getTranslated(widget.label[i], context)}${i == 0 ? '' : ' = ${widget.product.quantityFromPc}'}',
 
                                                   // widget
                                                   //     .product
@@ -536,7 +536,8 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                                 isPiece,
                                                 largeUnitQuantity == null
                                                     ? null
-                                                    : widget.product.quantityFromPc,
+                                                    : widget
+                                                        .product.quantityFromPc,
                                               );
 
                                               // cart.variations = _variation;
