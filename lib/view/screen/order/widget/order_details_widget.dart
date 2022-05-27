@@ -150,7 +150,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                           PriceConverter.convertPrice(context, widget.orderDetailsModel.price),
                           style: titilliumSemiBold.copyWith(color: ColorResources.getPrimary(context)),
                         ),
-                        Text('x${widget.orderDetailsModel.qty}', style: titilliumSemiBold.copyWith(color: ColorResources.getPrimary(context))),
+                        Text('x${widget.orderDetailsModel.total_qty}', style: titilliumSemiBold.copyWith(color: ColorResources.getPrimary(context))),
 
                         widget.orderDetailsModel.discount>0?
                         Container(
@@ -159,7 +159,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                           padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), border: Border.all(color: ColorResources.getPrimary(context))),
                           child: Text(
-                            PriceConverter.percentageCalculation(context, (widget.orderDetailsModel.price * widget.orderDetailsModel.qty), widget.orderDetailsModel.discount, 'amount'),
+                            PriceConverter.percentageCalculation(context, widget.orderDetailsModel.total_price , widget.orderDetailsModel.discount, 'amount'),
                             style: titilliumRegular.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL, color: ColorResources.getPrimary(context)),
                           ),
                         ):SizedBox(),

@@ -96,7 +96,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   });
 
                   order.orderDetails.forEach((orderDetails) {
-                    _order = _order + (orderDetails.price * orderDetails.qty);
+                    _order = _order + orderDetails.total_price ;
                     _discount = _discount + orderDetails.discount;
                     _tax = _tax + orderDetails.tax;
                   });

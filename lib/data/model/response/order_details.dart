@@ -9,6 +9,7 @@ class OrderDetailsModel {
   int _sellerId;
   Product _productDetails;
   int _qty;
+  int _count_piece_in_kr;
   double _price;
   double _tax;
   double _discount;
@@ -48,6 +49,7 @@ class OrderDetailsModel {
     this._sellerId = sellerId;
     this._productDetails = productDetails;
     this._qty = qty;
+    this._count_piece_in_kr = count_piece_in_kr;
     this._price = price;
     this._tax = tax;
     this._discount = discount;
@@ -67,7 +69,22 @@ class OrderDetailsModel {
   int get sellerId => _sellerId;
   Product get productDetails => _productDetails;
   int get qty => _qty;
+  int get count_piece_in_kr => _count_piece_in_kr;
   double get price => _price;
+  double get total_price {
+    if(_count_piece_in_kr!=null&&_count_piece_in_kr!=0){
+      return _price*(_qty/_count_piece_in_kr);
+    }else{
+      return _price*(_qty);
+    }
+  }
+  int get total_qty {
+    if(_count_piece_in_kr!=null&&_count_piece_in_kr!=0){
+      return (_qty/_count_piece_in_kr).toInt();
+    }else{
+      return _qty;
+    }
+  }
   double get tax => _tax;
   double get discount => _discount;
   String get deliveryStatus => _deliveryStatus;
@@ -87,6 +104,7 @@ class OrderDetailsModel {
       _productDetails = Product.fromJson(json['product_details']);
     }
     _qty = Parser.parseInt(json['qty']);
+    _count_piece_in_kr = Parser.parseInt(json['count_piece_in_kr']);
     _price = json['price'].toDouble();
     _tax = json['tax'].toDouble();
     _discount = json['discount'].toDouble();
@@ -115,6 +133,7 @@ class OrderDetailsModel {
       data['product_details'] = this._productDetails.toJson();
     }
     data['qty'] = this._qty;
+    data['count_piece_in_kr'] = this._count_piece_in_kr;
     data['price'] = this._price;
     data['tax'] = this._tax;
     data['discount'] = this._discount;
