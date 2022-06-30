@@ -19,7 +19,6 @@ import 'package:flutter_sixvalley_ecommerce/view/basewidget/show_custom_snakbar.
 import 'package:flutter_sixvalley_ecommerce/view/screen/cart/cart_screen.dart';
 import 'package:provider/provider.dart';
 
-
 class CartBottomSheet extends StatefulWidget {
   final Product product;
   final Function callback;
@@ -369,6 +368,10 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                                   context,
                                                   listen: false)
                                               .setQuantity(1);
+                                          Provider.of<ProductDetailsProvider>(
+                                                  context,
+                                                  listen: false)
+                                              .setCheck(i);
                                           if (i == 0) {
                                             Provider.of<ProductDetailsProvider>(
                                                     context,
@@ -393,8 +396,11 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             border: Border.all(
-                                                color: Theme.of(context)
-                                                    .primaryColor,
+                                                color: details.checkValue == i
+                                                    ? ColorResources.getPrimary(
+                                                        context)
+                                                    : Theme.of(context)
+                                                        .highlightColor,
                                                 width: 2),
                                           ),
                                           child: Center(
