@@ -43,6 +43,9 @@ class ProductWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).highlightColor,
+          border: Border.all(
+            color: Color(0xFF09a18d),
+          ),
           boxShadow: [
             BoxShadow(
                 color: Colors.grey.withOpacity(0.2),

@@ -397,8 +397,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                                 BorderRadius.circular(5),
                                             border: Border.all(
                                                 color: details.checkValue == i
-                                                    ? ColorResources.getPrimary(
-                                                        context)
+                                                    ? ColorResources.BLACK
                                                     : Theme.of(context)
                                                         .highlightColor,
                                                 width: 2),
