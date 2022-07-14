@@ -131,7 +131,7 @@ class SellerScreen extends StatelessWidget {
                 Padding(
                   padding:  EdgeInsets.only(left: Dimensions.PADDING_SIZE_SMALL, right: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
                   child: SearchWidget(
-                    hintText: 'Search product...',
+                    hintText: getTranslated('SEARCH_HINT', context),
                     onTextChanged: (String newText) => Provider.of<ProductProvider>(context, listen: false).filterData(newText),
                     onClearPressed: () {},
                     isSeller: true,

@@ -49,7 +49,10 @@ class BrandView extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular((MediaQuery.of(context).size.width/5))),
                                 color: Theme.of(context).highlightColor,
-                                 ),
+                              border: Border.all(
+                                color: Color(0xFF09a18d),
+                              ),
+                            ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.all(Radius.circular((MediaQuery.of(context).size.width/5))),
                               child: FadeInImage.assetNetwork(

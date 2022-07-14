@@ -361,5 +361,6 @@
   "address_type": "Address Type",
   "packet": "packet",
   "box": "box",
-  "piece": "piece"
+  "piece": "piece",
+  "wish": "Wish"
 }

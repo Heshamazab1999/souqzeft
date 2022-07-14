@@ -7,7 +7,6 @@ import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/products_vie
 import 'package:flutter_sixvalley_ecommerce/view/screen/product/widget/promise_screen.dart';
 import 'package:flutter_sixvalley_ecommerce/view/screen/product/widget/seller_view.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
-
 import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
 import 'package:flutter_sixvalley_ecommerce/provider/product_details_provider.dart';
 import 'package:flutter_sixvalley_ecommerce/provider/product_provider.dart';
@@ -24,7 +23,6 @@ import 'package:flutter_sixvalley_ecommerce/view/screen/product/widget/product_t
 import 'package:flutter_sixvalley_ecommerce/view/screen/product/widget/related_product_view.dart';
 import 'package:flutter_sixvalley_ecommerce/view/screen/product/widget/review_widget.dart';
 import 'package:provider/provider.dart';
-
 import 'faq_and_review_screen.dart';
 
 class ProductDetails extends StatefulWidget {
