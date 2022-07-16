@@ -158,7 +158,7 @@ class ProfileProvider extends ChangeNotifier {
       if(_addressList == null) {
         _addressList = [];
       }
-      _addressList.add(addressModel);
+       _addressList.add(addressModel);
       String message = map["message"];
       callback(true, message);
     } else {

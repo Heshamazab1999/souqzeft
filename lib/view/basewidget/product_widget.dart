@@ -68,9 +68,10 @@ class ProductWidget extends StatelessWidget {
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
                 child: FadeInImage.assetNetwork(
+
                   placeholder: Images.placeholder,
                   fit: BoxFit.cover,
-                  height: MediaQuery.of(context).size.width / 2.45,
+                  height: MediaQuery.of(context).size.width / 2.8,
                   image:
                       '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productThumbnailUrl}/${productModel.thumbnail}',
                   imageErrorBuilder: (c, o, s) => Image.asset(
@@ -123,7 +124,7 @@ class ProductWidget extends StatelessWidget {
                               style: titleRegular.copyWith(
                                 color: ColorResources.getRed(context),
                                 decoration: TextDecoration.lineThrough,
-                                fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
+                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
                               ),
                             )
                           : SizedBox.shrink(),
@@ -162,6 +163,7 @@ class ProductWidget extends StatelessWidget {
                                 discountType: productModel.discountType,
                                 discount: productModel.discount),
                             style: titilliumSemiBold.copyWith(
+                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
                                 color: ColorResources.getPrimary(context)),
                           ),
                         ],

@@ -59,7 +59,8 @@ class AllCategoryScreen extends StatelessWidget {
                   ),
                 ),
 
-                Expanded(child: ListView.builder(
+                Expanded(child:
+                ListView.builder(
                   padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
                   itemCount: categoryProvider.categoryList[categoryProvider.categorySelectedIndex].subCategories.length+1,
                   itemBuilder: (context, index) {
