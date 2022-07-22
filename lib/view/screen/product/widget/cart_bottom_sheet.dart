@@ -324,7 +324,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                         ? SizedBox(height: Dimensions.PADDING_SIZE_SMALL)
                         : SizedBox(),
 
-                    // Variation
+                    //   Variation
                     ListView.builder(
                       shrinkWrap: true,
                       itemCount: 1,
@@ -372,11 +372,13 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                                   context,
                                                   listen: false)
                                               .setCheck(i);
+
                                           if (i == 0) {
                                             Provider.of<ProductDetailsProvider>(
                                                     context,
                                                     listen: false)
                                                 .setIsPiece(true);
+                                            print(isPiece);
                                           } else {
                                             print(widget
                                                 .product.largeUnitQuantity);
@@ -384,6 +386,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                                     context,
                                                     listen: false)
                                                 .setIsPiece(false);
+                                            print(isPiece);
                                           }
                                         },
                                         child: Container(

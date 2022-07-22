@@ -15,6 +15,7 @@ class CartWidget extends StatelessWidget {
   final CartModel cartModel;
   final int index;
   final bool fromCheckout;
+
   const CartWidget(
       {Key key,
       this.cartModel,
@@ -65,6 +66,16 @@ class CartWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Text(
+                        cartModel.isPiece !=null
+                            ? getTranslated("piece", context)
+                            : getTranslated("box", context),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: titilliumBold.copyWith(
+                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                          color: ColorResources.getReviewRattingColor(context),
+                        )),
                     Row(
                       children: [
                         Expanded(
@@ -231,6 +242,7 @@ class QuantityButton extends StatelessWidget {
   final int quantity;
   final int index;
   final int maxQty;
+
   QuantityButton(
       {@required this.isIncrement,
       @required this.quantity,
