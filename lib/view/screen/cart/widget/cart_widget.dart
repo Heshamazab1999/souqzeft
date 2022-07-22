@@ -66,16 +66,16 @@ class CartWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                        cartModel.isPiece !=null
-                            ? getTranslated("piece", context)
-                            : getTranslated("box", context),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: titilliumBold.copyWith(
-                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                          color: ColorResources.getReviewRattingColor(context),
-                        )),
+                    // Text(
+                    //     cartModel.isPiece !=null
+                    //         ? getTranslated("piece", context)
+                    //         : getTranslated("box", context),
+                    //     maxLines: 1,
+                    //     overflow: TextOverflow.ellipsis,
+                    //     style: titilliumBold.copyWith(
+                    //       fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                    //       color: ColorResources.getReviewRattingColor(context),
+                    //     )),
                     Row(
                       children: [
                         Expanded(
