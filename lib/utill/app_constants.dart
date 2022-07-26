@@ -116,6 +116,11 @@ class AppConstants {
       '/api/v1/mapapi/place-api-autocomplete';
   static const String PLACE_DETAILS_URI = '/api/v1/mapapi/place-api-details';
   static const String DISTANCE_MATRIX_URI = '/api/v1/mapapi/distance-api';
+  static const String FREE_SHIPPING_PRICE_URI =
+      'https://souqadam.com/api/v1/free-shipping-min';
+  static const String CITIES_URI = 'https://souqadam.com/api/v1/cities';
+  static const String SHIPPING_FEE =
+      'https://souqadam.com/api/v1/shipping-cost';
 
   // sharePreference
   static const String TOKEN = 'token';

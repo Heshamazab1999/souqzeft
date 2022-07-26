@@ -65,14 +65,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   bool _digitalPayment;
   bool _cod;
   bool _billingAddress;
-  // int _freeShippingPrice;
-
-  // Future<Void> _loadData() async {
-  //   _freeShippingPrice = await getFreeShippingPrice();
-  //   print(
-  //       '------------------- free shipping fee is ------------ $_freeShippingPrice ----');
-  // }
-
+  /*
+  ----------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------
+  ------------------------------------ If there is a problem in shipping fee that is the -------
+  ------------------------------------ shipping fee equal total order cost, go to cart and -----
+  ------------------------------------ send variable amount instead of shipping ----------------
+  ----------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------
+  */
   @override
   void initState() {
     // _loadData();
@@ -93,6 +94,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             .configModel
             .billingAddress ==
         1;
+  
 
     //
     // Provider.of<OrderProvider>(context, listen: false).shippingAddressNull();

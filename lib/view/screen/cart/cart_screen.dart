@@ -38,6 +38,8 @@ class _CartScreenState extends State<CartScreen> {
       Provider.of<CartProvider>(context, listen: false)
           .getFreeShippingPriceFromProvider();
       Provider.of<CartProvider>(context, listen: false).loadCities();
+      Provider.of<CartProvider>(context, listen: false)
+          .getShippingFeeFromProvider();
 
       if (Provider.of<SplashProvider>(context, listen: false)
               .configModel
@@ -210,9 +212,15 @@ class _CartScreenState extends State<CartScreen> {
                                                   cartList: cartList,
                                                   totalOrderAmount: amount,
                                                   shippingFee:
-                                                      // _freeShippingPrice >
-                                                      amount,
-                                                  //  ? shippingAmount
+                                                      Provider.of<CartProvider>(
+                                                              context,
+                                                              listen: false)
+                                                          .shippingFee
+                                                          .toDouble(),
+                                                  // _freeShippingPrice >
+                                                  //     amount,
+                                                  //  shippingAmount,
+
                                                   // : 0,
                                                   discount: discount,
                                                   tax: tax,

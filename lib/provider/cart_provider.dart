@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sixvalley_ecommerce/data/http/get_data/get_cities.dart';
 import 'package:flutter_sixvalley_ecommerce/data/http/get_data/get_free_shipping_price.dart';
+import 'package:flutter_sixvalley_ecommerce/data/http/get_data/get_shipping_fee.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/body/selected_shipping_type.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/base/api_response.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/base/error_response.dart';
@@ -46,6 +47,11 @@ class CartProvider extends ChangeNotifier {
 
   void loadCities() async {
     cities.addAll(await getCity());
+  }
+
+  int shippingFee;
+  void getShippingFeeFromProvider() async {
+    shippingFee = await getShippingFee();
   }
 
   void getCartData() {

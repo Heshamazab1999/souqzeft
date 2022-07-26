@@ -1,11 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter_sixvalley_ecommerce/utill/app_constants.dart';
 
 import '../api.dart';
 
-Future<int> getFreeShippingPrice() async {
-  String url = AppConstants.FREE_SHIPPING_PRICE_URI;
+Future<int> getShippingFee() async {
+  String url = AppConstants.SHIPPING_FEE;
   // 'https://souqadam.com/api/v1/free-shipping-min';
   API _api = API();
   print('------------- from getter----------');

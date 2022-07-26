@@ -1,7 +1,9 @@
 import 'package:flutter_sixvalley_ecommerce/data/http/api.dart';
+import 'package:flutter_sixvalley_ecommerce/utill/app_constants.dart';
 
 Future<List> getCity() async {
-  String url = 'https://souqadam.com/api/v1/cities';
+  String url = AppConstants.CITIES_URI;
+  //'https://souqadam.com/api/v1/cities';
 
   Map dataReturned = await API()
       .getRequest(url: url, headers: {"Content-Type": "application/json"});
