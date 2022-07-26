@@ -27,10 +27,28 @@ class OrderRepo {
     }
   }
 
-  Future<ApiResponse> getOrderDetails(String orderID, String languageCode) async {
+  Future<ApiResponse> getOrderDetails(
+      String orderID, String languageCode) async {
     try {
       final response = await dioClient.get(
-        AppConstants.ORDER_DETAILS_URI+orderID, options: Options(headers: {AppConstants.LANG_KEY: languageCode}),
+        AppConstants.ORDER_DETAILS_URI + orderID,
+        options: Options(headers: {AppConstants.LANG_KEY: languageCode}),
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+// ----------------------------------------------------------------------------------------
+//------------------------------- TODO put the real link ----------------------------------
+//------------------------Free shipping price----------------------------------------------
+  Future<ApiResponse> getFreeShippingPrice(String languageCode) async {
+    try {
+      print("-------------***************--------  from DIO-----------------");
+      final response = await dioClient.get(
+        AppConstants.FREE_SHIPPING_URI,
+        options: Options(headers: {AppConstants.LANG_KEY: languageCode}),
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -47,10 +65,11 @@ class OrderRepo {
     }
   }
 
-
-  Future<ApiResponse> placeOrder(String addressID, String couponCode, String billingAddressId, String orderNote) async {
+  Future<ApiResponse> placeOrder(String addressID, String couponCode,
+      String billingAddressId, String orderNote) async {
     try {
-      final response = await dioClient.get(AppConstants.ORDER_PLACE_URI+'?address_id=$addressID&coupon_code=$couponCode&billing_address_id=$billingAddressId&order_note=$orderNote');
+      final response = await dioClient.get(AppConstants.ORDER_PLACE_URI +
+          '?address_id=$addressID&coupon_code=$couponCode&billing_address_id=$billingAddressId&order_note=$orderNote');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -59,7 +78,7 @@ class OrderRepo {
 
   Future<ApiResponse> getTrackingInfo(String orderID) async {
     try {
-      final response = await dioClient.get(AppConstants.TRACKING_URI+orderID);
+      final response = await dioClient.get(AppConstants.TRACKING_URI + orderID);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -68,23 +87,32 @@ class OrderRepo {
 
   Future<ApiResponse> getShippingMethod(int sellerId) async {
     try {
-      final response = sellerId==1?await dioClient.get('${AppConstants.GET_SHIPPING_METHOD}/$sellerId/admin'):
-      await dioClient.get('${AppConstants.GET_SHIPPING_METHOD}/$sellerId/seller');
+      final response = sellerId == 1
+          ? await dioClient
+              .get('${AppConstants.GET_SHIPPING_METHOD}/$sellerId/admin')
+          : await dioClient
+              .get('${AppConstants.GET_SHIPPING_METHOD}/$sellerId/seller');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
 
-
-  Future<http.StreamedResponse> refundRequest(int orderDetailsId, double amount, String refundReason, List<XFile> file, String token) async {
-    http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse('${AppConstants.BASE_URL}${AppConstants.REFUND_REQUEST_URI}'));
-    request.headers.addAll(<String,String>{'Authorization': 'Bearer $token'});
-    for(int i=0; i<file.length;i++){
-      if(file != null) {
+  Future<http.StreamedResponse> refundRequest(int orderDetailsId, double amount,
+      String refundReason, List<XFile> file, String token) async {
+    http.MultipartRequest request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+            '${AppConstants.BASE_URL}${AppConstants.REFUND_REQUEST_URI}'));
+    request.headers.addAll(<String, String>{'Authorization': 'Bearer $token'});
+    for (int i = 0; i < file.length; i++) {
+      if (file != null) {
         print('bangladesh======');
         Uint8List _list = await file[i].readAsBytes();
-        var part = http.MultipartFile('images[]', file[i].readAsBytes().asStream(), _list.length, filename: basename(file[i].path), contentType: MediaType('image', 'jpg'));
+        var part = http.MultipartFile(
+            'images[]', file[i].readAsBytes().asStream(), _list.length,
+            filename: basename(file[i].path),
+            contentType: MediaType('image', 'jpg'));
         request.files.add(part);
       }
     }
@@ -92,7 +120,7 @@ class OrderRepo {
     _fields.addAll(<String, String>{
       'order_details_id': orderDetailsId.toString(),
       'amount': amount.toString(),
-      'refund_reason':refundReason
+      'refund_reason': refundReason
     });
     request.fields.addAll(_fields);
     http.StreamedResponse response = await request.send();
@@ -101,16 +129,18 @@ class OrderRepo {
 
   Future<ApiResponse> getRefundInfo(int orderDetailsId) async {
     try {
-      final response = await dioClient.get('${AppConstants.REFUND_REQUEST_PRE_REQ_URI}?order_details_id=$orderDetailsId');
+      final response = await dioClient.get(
+          '${AppConstants.REFUND_REQUEST_PRE_REQ_URI}?order_details_id=$orderDetailsId');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
-
   }
+
   Future<ApiResponse> getRefundResult(int orderDetailsId) async {
     try {
-      final response = await dioClient.get('${AppConstants.REFUND_RESULT_URI}?id=$orderDetailsId');
+      final response = await dioClient
+          .get('${AppConstants.REFUND_RESULT_URI}?id=$orderDetailsId');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -119,11 +149,11 @@ class OrderRepo {
 
   Future<ApiResponse> cancelOrder(int orderId) async {
     try {
-      final response = await dioClient.get('${AppConstants.CANCEL_ORDER_URI}?order_id=$orderId');
+      final response = await dioClient
+          .get('${AppConstants.CANCEL_ORDER_URI}?order_id=$orderId');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-
 }

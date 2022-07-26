@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/address_model.dart';
 import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
+import 'package:flutter_sixvalley_ecommerce/provider/cart_provider.dart';
 import 'package:flutter_sixvalley_ecommerce/provider/location_provider.dart';
 import 'package:flutter_sixvalley_ecommerce/provider/order_provider.dart';
 import 'package:flutter_sixvalley_ecommerce/provider/profile_provider.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_sixvalley_ecommerce/view/basewidget/custom_app_bar.dart'
 import 'package:flutter_sixvalley_ecommerce/view/basewidget/my_dialog.dart';
 import 'package:flutter_sixvalley_ecommerce/view/basewidget/textfield/custom_textfield.dart';
 import 'package:flutter_sixvalley_ecommerce/view/screen/address/select_location_screen.dart';
+import 'package:flutter_sixvalley_ecommerce/view/screen/address/widget/custom_dropdown.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -102,6 +104,13 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var items = [
+      'Item 1',
+      'Item 2',
+      'Item 3',
+      'Item 4',
+      'Item 5',
+    ];
     print('====selected shipping or billing==>${_address.toString()}');
     Provider.of<ProfileProvider>(context, listen: false)
         .initAddressList(context);
@@ -489,7 +498,8 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                                           height: Dimensions
                                               .PADDING_SIZE_DEFAULT_ADDRESS),
                                       Text(
-                                        getTranslated('city', context),
+                                        //getTranslated('city', context),
+                                        'المنطقة',
                                         style: robotoRegular.copyWith(
                                             color: ColorResources.getHint(
                                                 context)),
@@ -497,6 +507,46 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                                       SizedBox(
                                           height:
                                               Dimensions.PADDING_SIZE_SMALL),
+
+                                      // DropdownButton(
+                                      //   items: items.map((String items) {
+                                      //     return DropdownMenuItem(
+                                      //       value: items,
+                                      //       child: Text(items),
+                                      //     );
+                                      //   }).toList(),
+                                      //   onChanged: (val) {},
+                                      //   icon: Icon(
+                                      //     Icons.keyboard_arrow_down,
+                                      //   ),
+                                      //   onTap: () {},
+                                      //   hint: Text('المنطقة'),
+                                      //   value: ,
+                                      // ),
+
+                                      SharedDropdown(
+                                        enabled: true,
+                                        label: 'المنطقة',
+                                        listItem: Provider.of<CartProvider>(
+                                                context,
+                                                listen: false)
+                                            .cities,
+                                        // mOnChanged: (val) {},
+                                        mOnSaved: (val) {},
+                                        mValidator: (val) {
+                                          if (val == null || val == '') {
+                                            return 'اختر مدينة';
+                                          }
+                                          return 'هناك مشكلة ما';
+                                        },
+                                        maxHeight: 100,
+                                        //value: 'الصوالح',
+                                      ),
+
+                                      SizedBox(
+                                          height:
+                                              Dimensions.PADDING_SIZE_SMALL),
+
                                       CustomTextField(
                                         hintText:
                                             getTranslated('city', context),

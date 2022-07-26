@@ -3,6 +3,7 @@ import 'package:flutter_sixvalley_ecommerce/data/model/body/order_place_model.da
 import 'package:flutter_sixvalley_ecommerce/data/model/response/base/api_response.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/base/error_response.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/cart_model.dart';
+import 'package:flutter_sixvalley_ecommerce/data/model/response/free_shipping_price_model.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/order_details.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/order_model.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/refund_info_model.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_sixvalley_ecommerce/data/model/response/refund_result_mo
 import 'package:flutter_sixvalley_ecommerce/data/model/response/shipping_method_model.dart';
 import 'package:flutter_sixvalley_ecommerce/data/repository/order_repo.dart';
 import 'package:flutter_sixvalley_ecommerce/helper/api_checker.dart';
+import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
 import 'package:flutter_sixvalley_ecommerce/utill/app_constants.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -24,8 +26,12 @@ class OrderProvider with ChangeNotifier {
   List<OrderModel> _pendingList;
   List<OrderModel> _deliveredList;
   List<OrderModel> _canceledList;
-  int _addressIndex ;
+  int _addressIndex;
+  int _totalAmount;
   int _billingAddressIndex;
+  double _freeShippingPrice;
+
+  double get freeShippingPrice => _freeShippingPrice;
 
   int get billingAddressIndex => _billingAddressIndex;
   int _shippingIndex;
@@ -48,6 +54,7 @@ class OrderProvider with ChangeNotifier {
   int get shippingIndex => _shippingIndex;
 
   bool get isLoading => _isLoading;
+  int get totalAmount => _totalAmount;
 
   List<ShippingMethodModel> get shippingList => _shippingList;
 
@@ -125,25 +132,74 @@ class OrderProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // --------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------
+  // ------------------------------- TODO handle real respons -----------------------
+  // --------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------
+  // void getFreeShippingPrice(BuildContext context, String languageCode) async {
+  //   // _orderDetails = null;
+  //   //  double freeShippingPrice;
+  //   notifyListeners();
+
+  //   ApiResponse apiResponse =
+  //       await orderRepo.getFreeShippingPrice(languageCode);
+  //   if (apiResponse.response != null &&
+  //       apiResponse.response.statusCode == 200) {
+  //     print(
+  //         "-------------***************--------  from provider-----------------");
+  //     print(
+  //         "-------------***************-------- ${apiResponse.response.data}");
+  //     // _freeShippingPrice =
+  //     //     FreeShippingPriceModel.fromJson(apiResponse.response.data).minPrice;
+  //    // _freeShippingPrice = (order) => FreeShippingPriceModel.fromJson(order).minPrice;
+  //     //-----------------------------------------------------------------------------
+  //     // _orderDetails = [];
+  //     // apiResponse.response.data.forEach(
+  //     //     (order) => _orderDetails.add(OrderDetailsModel.fromJson(order)));
+  //     //-----------------------------------------------------------------------------
+  //   } else {
+  //     ApiChecker.checkApi(context, apiResponse);
+  //   }
+  //   notifyListeners();
+  // }
+
   Future<void> placeOrder(
-      OrderPlaceModel orderPlaceModel,
-      Function callback,
-      List<CartModel> cartList,
-      String addressID,
-      String couponCode,
-      String billingAddressId,
-      String orderNote) async {
+    OrderPlaceModel orderPlaceModel,
+    Function callback,
+    List<CartModel> cartList,
+    String addressID,
+    String couponCode,
+    String billingAddressId,
+    String orderNote,
+    BuildContext context,
+
+    //int totalAmount,
+  ) async {
     _isLoading = true;
     notifyListeners();
     ApiResponse apiResponse = await orderRepo.placeOrder(
-        addressID, couponCode, billingAddressId, orderNote);
+      addressID,
+      couponCode,
+      billingAddressId,
+      orderNote,
+    );
     _isLoading = false;
     if (apiResponse.response != null &&
         apiResponse.response.statusCode == 200) {
       _addressIndex = null;
       _billingAddressIndex = null;
       String message = apiResponse.response.data.toString();
-      callback(true, message, '', cartList);
+      callback(true, message, '', cartList, false);
+    } else if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 202) {
+      String message = ' ${apiResponse.response.data.toString()}';
+      //apiResponse.response.data.toString();
+
+      //{getTranslated("sum_must_be_greater_than", context)}
+      callback(false, message, '', cartList, true);
+      print(
+          "صباح الفل يابو رمضان ياغالي ------------------------ ياحتة من جلبي");
     } else {
       String errorMessage;
       if (apiResponse.error is String) {
@@ -154,7 +210,7 @@ class OrderProvider with ChangeNotifier {
         print(errorResponse.errors[0].message);
         errorMessage = errorResponse.errors[0].message;
       }
-      callback(false, errorMessage, '-1', cartList);
+      callback(false, errorMessage, '-1', cartList, false);
     }
     notifyListeners();
   }
@@ -221,7 +277,7 @@ class OrderProvider with ChangeNotifier {
     }
     if (orderModel == null) {
       _trackingModel = null;
-      notifyListeners();
+      //notifyListeners();
       ApiResponse apiResponse = await orderRepo.getTrackingInfo(orderID);
       if (apiResponse.response != null &&
           apiResponse.response.statusCode == 200) {

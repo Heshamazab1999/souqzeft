@@ -34,7 +34,8 @@ class ProductDetailsProvider extends ChangeNotifier {
   bool _check = false;
   double _price = 0.0;
   bool _isPiece = true;
-  int checkValue=0;
+
+  //int checkValue=0;
 
   List<ReviewModel> get reviewList => _reviewList;
 
@@ -98,10 +99,11 @@ class ProductDetailsProvider extends ChangeNotifier {
     _isPiece = isPiece;
     notifyListeners();
   }
-void setCheck(int check){
-    checkValue=check;
-  notifyListeners();
-}
+
+  // void setCheck(int check) {
+  //   checkValue = check;
+  //   notifyListeners();
+  // }
 
   void initData(Product product) {
     _variantIndex = 0;

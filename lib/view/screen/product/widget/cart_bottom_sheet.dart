@@ -1,5 +1,8 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:flutter_sixvalley_ecommerce/data/model/response/cart_model.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
 import 'package:flutter_sixvalley_ecommerce/helper/price_converter.dart';
@@ -17,7 +20,6 @@ import 'package:flutter_sixvalley_ecommerce/utill/images.dart';
 import 'package:flutter_sixvalley_ecommerce/view/basewidget/button/custom_button.dart';
 import 'package:flutter_sixvalley_ecommerce/view/basewidget/show_custom_snakbar.dart';
 import 'package:flutter_sixvalley_ecommerce/view/screen/cart/cart_screen.dart';
-import 'package:provider/provider.dart';
 
 class CartBottomSheet extends StatefulWidget {
   final Product product;
@@ -58,7 +60,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                 topRight: Radius.circular(20), topLeft: Radius.circular(20)),
           ),
           child: Consumer<ProductDetailsProvider>(
-            builder: (context, details, child) {
+            builder: (context, details, _) {
               Variation _variation;
               String _variantName = widget.product.colors.length != 0
                   ? widget.product.colors[details.variantIndex].name
@@ -323,117 +325,83 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                     widget.product.colors.length > 0
                         ? SizedBox(height: Dimensions.PADDING_SIZE_SMALL)
                         : SizedBox(),
+                    Row(
+                      children: [
+                        Text('${getTranslated('packet', context)}' + "  : ",
+                            style: robotoBold),
+                        ProductSizeWidget(
+                          callback: () {
+                            details.setQuantity(1);
+                            details.setIsPiece(true);
+                          },
+                          name: getTranslated("piece", context),
+                          isSelected: details.isPiece,
+                        ),
+                        widget.product.largeUnit != null
+                            ? ProductSizeWidget(
+                                callback: () {
+                                  details.setQuantity(1);
+                                  details.setIsPiece(false);
+                                },
+                                name: getTranslated("box", context) +
+                                    "=${widget.product.quantityFromPc}",
+                                isSelected: !details.isPiece,
+                              )
+                            : SizedBox(),
 
-                    //   Variation
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 1,
-                      // itemCount: widget.product.choiceOptions.length,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                  '${getTranslated('packet', context)}' +
-                                      "  : ",
-                                  style: robotoBold),
-                              // Text('${getTranslated('available', context)} '+' '+'${widget.product.choiceOptions[index].title} : ', style: titilliumRegular.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT)),
-                              // SizedBox(
-                              //     width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: GridView.builder(
-                                    reverse: true,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 4,
-                                      crossAxisSpacing: 5,
-                                      mainAxisSpacing: 15,
-                                      childAspectRatio: (1 / .55),
-                                    ),
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount:
-                                        widget.product.quantityFromPc == null
-                                            ? 1
-                                            : 2,
+                        // ...List.generate(
+                        //   2,
+                        //   (i) => InkWell(
+                        //     onTap: () {
+                        //       // Provider.of<ProductDetailsProvider>(context,
+                        //       //         listen: false)
+                        //       //     .setCheck(i);
 
-                                    // itemCount: widget.product.choiceOptions[index].options.length,
-                                    itemBuilder: (context, i) {
-                                      return InkWell(
-                                        onTap: () {
-                                          Provider.of<ProductDetailsProvider>(
-                                                  context,
-                                                  listen: false)
-                                              .setQuantity(1);
-                                          Provider.of<ProductDetailsProvider>(
-                                                  context,
-                                                  listen: false)
-                                              .setCheck(i);
+                        //       if (i == 0) {
+                        //         Provider.of<ProductDetailsProvider>(context,
+                        //                 listen: false)
+                        //             .setIsPiece(true);
 
-                                          if (i == 0) {
-                                            Provider.of<ProductDetailsProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .setIsPiece(true);
-                                            print(isPiece);
-                                          } else {
-                                            print(widget
-                                                .product.largeUnitQuantity);
-                                            Provider.of<ProductDetailsProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .setIsPiece(false);
-                                            print(isPiece);
-                                          }
-                                        },
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: Dimensions
-                                                  .PADDING_SIZE_EXTRA_SMALL),
-                                          decoration: BoxDecoration(
-                                            //color: details.variationIndex[index] != i ? Theme.of(context).highlightColor : ColorResources.getPrimary(context),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            border: Border.all(
-                                                color: details.checkValue == i
-                                                    ? ColorResources.BLACK
-                                                    : Theme.of(context)
-                                                        .highlightColor,
-                                                width: 2),
-                                          ),
-                                          child: Center(
-                                            child: FittedBox(
-                                              child: Text(
-                                                  '${getTranslated(widget.label[i], context)}${i == 0 ? '' : ' = ${widget.product.quantityFromPc}'}',
-
-                                                  // widget
-                                                  //     .product
-                                                  //     .choiceOptions[index]
-                                                  //     .options[i],
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style:
-                                                      titilliumRegular.copyWith(
-                                                    fontSize: Dimensions
-                                                        .FONT_SIZE_DEFAULT,
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                  )),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ]);
-                      },
+                        //         print(isPiece);
+                        //       } else {
+                        //         print(widget.product.largeUnitQuantity);
+                        //         Provider.of<ProductDetailsProvider>(context,
+                        //                 listen: false)
+                        //             .setIsPiece(false);
+                        //         print(isPiece);
+                        //       }
+                        //     },
+                        //     child: Container(
+                        //       alignment: Alignment.center,
+                        //       padding: EdgeInsets.symmetric(
+                        //           horizontal:
+                        //               Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        //       decoration: BoxDecoration(
+                        //         //color: details.variationIndex[index] != i ? Theme.of(context).highlightColor : ColorResources.getPrimary(context),
+                        //         borderRadius: BorderRadius.circular(5),
+                        //         border: Border.all(
+                        //             color: details.isPiece
+                        //                 ? ColorResources.BLACK
+                        //                 : Theme.of(context).highlightColor,
+                        //             width: 2),
+                        //       ),
+                        //       child: Center(
+                        //         child: FittedBox(
+                        //           child: Text(
+                        //             '${getTranslated(widget.label[i], context)}${i == 0 ? '' : ' = ${widget.product.quantityFromPc}'}',
+                        //             maxLines: 1,
+                        //             overflow: TextOverflow.ellipsis,
+                        //             style: titilliumRegular.copyWith(
+                        //               fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                        //               color: Theme.of(context).primaryColor,
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // )
+                      ],
                     ),
 
                     SizedBox(
@@ -541,7 +509,11 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                                     : widget.product
                                                             .shippingCost ??
                                                         0,
-                                                isPiece,
+                                                //isPiece,
+                                                Provider.of<ProductDetailsProvider>(
+                                                        context,
+                                                        listen: false)
+                                                    .isPiece,
                                                 largeUnitQuantity == null
                                                     ? null
                                                     : widget
@@ -702,6 +674,50 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class ProductSizeWidget extends StatelessWidget {
+  const ProductSizeWidget({
+    Key key,
+    this.name,
+    this.callback,
+    this.isSelected,
+  }) : super(key: key);
+  final String name;
+  final VoidCallback callback;
+  final bool isSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: callback,
+      child: Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+              color: isSelected
+                  ? ColorResources.BLACK
+                  : Theme.of(context).highlightColor,
+              width: 2),
+        ),
+        child: Center(
+          child: FittedBox(
+            child: Text(
+              name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: titilliumRegular.copyWith(
+                fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

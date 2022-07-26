@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sixvalley_ecommerce/data/http/get_data/get_cities.dart';
+import 'package:flutter_sixvalley_ecommerce/data/http/get_data/get_free_shipping_price.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/body/selected_shipping_type.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/base/api_response.dart';
 import 'package:flutter_sixvalley_ecommerce/data/model/response/base/error_response.dart';
@@ -39,6 +41,12 @@ class CartProvider extends ChangeNotifier {
 
   List<int> _chosenShippingMethodIndex = [];
   List<int> get chosenShippingMethodIndex => _chosenShippingMethodIndex;
+
+  List cities = [];
+
+  void loadCities() async {
+    cities.addAll(await getCity());
+  }
 
   void getCartData() {
     _cartList = [];
@@ -112,6 +120,12 @@ class CartProvider extends ChangeNotifier {
     }
     _isLoading = false;
     notifyListeners();
+  }
+
+  int freeShippingPrice;
+  Future<void> getFreeShippingPriceFromProvider() async {
+    freeShippingPrice = await getFreeShippingPrice();
+    //return value; // await getFreeShippingPrice();
   }
 
   Future<ResponseModel> updateCartProductQuantity(

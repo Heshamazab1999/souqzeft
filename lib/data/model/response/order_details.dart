@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
 
 import 'package:flutter_sixvalley_ecommerce/helper/parser.dart';
@@ -20,28 +22,29 @@ class OrderDetailsModel {
   int _shippingMethodId;
   String _variant;
   int _refundReq;
+  bool _isPiece;
   //List<Variation> _variation;
 
   OrderDetailsModel(
       {int id,
-        int orderId,
-        int productId,
-        int sellerId,
-        Product productDetails,
-        int qty,
-        double price,
-        double tax,
-        double discount,
-        String deliveryStatus,
-        String paymentStatus,
-        String createdAt,
-        String updatedAt,
-        int shippingMethodId,
-        String variant,
-        int refundReq,
+      int orderId,
+      int productId,
+      int sellerId,
+      Product productDetails,
+      int qty,
+      double price,
+      double tax,
+      double discount,
+      String deliveryStatus,
+      String paymentStatus,
+      String createdAt,
+      String updatedAt,
+      int shippingMethodId,
+      String variant,
+      int refundReq,
+      bool isPiece
 
-
-        //List<Variation> variation
+      //List<Variation> variation
       }) {
     this._id = id;
     this._orderId = orderId;
@@ -60,9 +63,10 @@ class OrderDetailsModel {
     this._shippingMethodId = shippingMethodId;
     this._variant = variant;
     this._refundReq = refundReq;
+    this._isPiece = isPiece;
     //this._variation = variation;
   }
-
+  bool get isPiece => _isPiece;
   int get id => _id;
   int get orderId => _orderId;
   int get productId => _productId;
@@ -72,19 +76,21 @@ class OrderDetailsModel {
   int get count_piece_in_kr => _count_piece_in_kr;
   double get price => _price;
   double get total_price {
-    if(_count_piece_in_kr!=null&&_count_piece_in_kr!=0){
-      return _price*(_qty/_count_piece_in_kr);
-    }else{
-      return _price*(_qty);
+    if (_count_piece_in_kr != null && _count_piece_in_kr != 0 && !_isPiece) {
+      return _price * (_qty / _count_piece_in_kr);
+    } else {
+      return _price * (_qty);
     }
   }
+
   int get total_qty {
-    if(_count_piece_in_kr!=null&&_count_piece_in_kr!=0){
-      return (_qty/_count_piece_in_kr).toInt();
-    }else{
+    if (_count_piece_in_kr != null && _count_piece_in_kr != 0 && !_isPiece) {
+      return (_qty / _count_piece_in_kr).toInt();
+    } else {
       return _qty;
     }
   }
+
   double get tax => _tax;
   double get discount => _discount;
   String get deliveryStatus => _deliveryStatus;
@@ -100,7 +106,7 @@ class OrderDetailsModel {
     _orderId = Parser.parseInt(json['order_id']);
     _productId = Parser.parseInt(json['product_id']);
     _sellerId = Parser.parseInt(json['seller_id']);
-    if(json['product_details'] != null) {
+    if (json['product_details'] != null) {
       _productDetails = Product.fromJson(json['product_details']);
     }
     _qty = Parser.parseInt(json['qty']);
@@ -115,6 +121,8 @@ class OrderDetailsModel {
     _shippingMethodId = Parser.parseInt(json['shipping_method_id']);
     _variant = Parser.parseString(json['variant']);
     _refundReq = Parser.parseInt(json['refund_request']);
+    _isPiece = Parser.parseInt(json['is_piece']) == 0 ? false : true;
+    log(_isPiece.toString());
     /*if (json['variation'] != null) {
       _variation = [];
       json['variation'].forEach((v) {
@@ -129,7 +137,7 @@ class OrderDetailsModel {
     data['order_id'] = this._orderId;
     data['product_id'] = this._productId;
     data['seller_id'] = this._sellerId;
-    if(this._productDetails != null) {
+    if (this._productDetails != null) {
       data['product_details'] = this._productDetails.toJson();
     }
     data['qty'] = this._qty;
@@ -144,6 +152,7 @@ class OrderDetailsModel {
     data['shipping_method_id'] = this._shippingMethodId;
     data['variant'] = this._variant;
     data['refund_request'] = this._refundReq;
+    data['is_piece'] = this.isPiece ? 1 : 0;
     /*if (this._variation != null) {
       data['variation'] = this._variation.map((v) => v.toJson()).toList();
     }*/

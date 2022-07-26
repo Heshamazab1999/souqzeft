@@ -9,11 +9,8 @@ class OrderPlaceModel {
   String _paymentMethod;
   double _discount;
 
-  OrderPlaceModel(
-      CustomerInfo customerInfo,
-        List<CartModel> cart,
-        String paymentMethod,
-        double discount) {
+  OrderPlaceModel(CustomerInfo customerInfo, List<CartModel> cart,
+      String paymentMethod, double discount) {
     this._customerInfo = customerInfo;
     this._cart = cart;
     this._paymentMethod = paymentMethod;
@@ -59,8 +56,15 @@ class CustomerInfo {
   String _billingId;
   String _billingAddress;
   String _orderNote;
+  //String _totalAmount;
 
-  CustomerInfo(String addressId, String shippingAddress, String billingId, String billingAddress, String orderNote) {
+  CustomerInfo(
+    String addressId,
+    String shippingAddress,
+    String billingId,
+    String billingAddress,
+    String orderNote,
+  ) {
     this._addressId = addressId;
     this._shippingAddress = shippingAddress;
     this._addressId = billingId;
@@ -73,6 +77,7 @@ class CustomerInfo {
   String get billingId => _billingId;
   String get billingAddress => _billingAddress;
   String get orderNote => _orderNote;
+  //String get totalAmount => _totalAmount;
 
   CustomerInfo.fromJson(Map<String, dynamic> json) {
     _addressId = Parser.parseString(json['address_id']);
@@ -80,7 +85,6 @@ class CustomerInfo {
     _billingId = Parser.parseString(json['billing_address_id']);
     _billingAddress = Parser.parseString(json['billing_address_data']);
     _orderNote = Parser.parseString(json['order_note']);
-
   }
 
   Map<String, dynamic> toJson() {
@@ -109,14 +113,14 @@ class Cart {
   Cart(
       String id,
       double tax,
-        int quantity,
-        double price,
-        double discount,
-        String discountType,
-        int shippingMethodId,
-        String variant,
-        List<Variation> variation,
-        double shippingCost) {
+      int quantity,
+      double price,
+      double discount,
+      String discountType,
+      int shippingMethodId,
+      String variant,
+      List<Variation> variation,
+      double shippingCost) {
     this._id = id;
     this._tax = tax;
     this._quantity = quantity;

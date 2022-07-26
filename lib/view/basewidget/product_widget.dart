@@ -68,7 +68,6 @@ class ProductWidget extends StatelessWidget {
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
                 child: FadeInImage.assetNetwork(
-
                   placeholder: Images.placeholder,
                   fit: BoxFit.cover,
                   height: MediaQuery.of(context).size.width / 2.8,

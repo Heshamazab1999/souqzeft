@@ -24,6 +24,7 @@ class CartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("is piece = ${cartModel.isPiece}");
     return Container(
       margin: EdgeInsets.only(top: Dimensions.PADDING_SIZE_SMALL),
       padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
@@ -67,7 +68,7 @@ class CartWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Text(
-                    //     cartModel.isPiece !=null
+                    //     cartModel.isPiece != null
                     //         ? getTranslated("piece", context)
                     //         : getTranslated("box", context),
                     //     maxLines: 1,
@@ -79,14 +80,35 @@ class CartWidget extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: Text(cartModel.name,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: titilliumBold.copyWith(
-                                fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                color: ColorResources.getReviewRattingColor(
-                                    context),
-                              )),
+                          child: Row(
+                            children: [
+                              Text(
+                                cartModel.name,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: titilliumBold.copyWith(
+                                  fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                  color: ColorResources.getReviewRattingColor(
+                                      context),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                  cartModel.isPiece != null
+                                      ? (cartModel.isPiece ? 'قطعة' : 'كرتونة')
+                                      : '',
+                                  //getTranslated("box", context),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: titilliumBold.copyWith(
+                                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                    color: ColorResources.getReviewRattingColor(
+                                        context),
+                                  )),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           width: Dimensions.PADDING_SIZE_SMALL,
@@ -121,6 +143,7 @@ class CartWidget extends StatelessWidget {
                     SizedBox(
                       height: Dimensions.PADDING_SIZE_SMALL,
                     ),
+
                     Row(
                       children: [
                         cartModel.discount > 0
