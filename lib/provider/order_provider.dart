@@ -193,6 +193,7 @@ class OrderProvider with ChangeNotifier {
       callback(true, message, '', cartList, false);
     } else if (apiResponse.response != null &&
         apiResponse.response.statusCode == 202) {
+      // If 202, the total price is less than minimum charge
       String message = ' ${apiResponse.response.data.toString()}';
       //apiResponse.response.data.toString();
 

@@ -68,8 +68,10 @@ class OrderRepo {
   Future<ApiResponse> placeOrder(String addressID, String couponCode,
       String billingAddressId, String orderNote) async {
     try {
+      print('--------------- lol ----------');
       final response = await dioClient.get(AppConstants.ORDER_PLACE_URI +
           '?address_id=$addressID&coupon_code=$couponCode&billing_address_id=$billingAddressId&order_note=$orderNote');
+      print('lol 2 ----------------');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

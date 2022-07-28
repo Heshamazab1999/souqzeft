@@ -490,7 +490,8 @@ class OrderDetailsScreen extends StatelessWidget {
                                         getTranslated('TOTAL_PAYABLE', context),
                                     amount: PriceConverter.convertPrice(
                                         context,
-                                        (_order
+                                        (_order +
+                                            order.trackingModel.shippingCost
                                         /*_order +
                                                 _shippingFee +
                                                 order.trackingModel.shippingCost -
